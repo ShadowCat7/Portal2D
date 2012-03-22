@@ -1,0 +1,19 @@
+C:\Users\Gateway\Programs\Pikmin\Pikmin\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Gateway\Programs\Pikmin\Pikmin\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\wallBox.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Pikmin.exe
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Pikmin.pdb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\obj\x86\Debug\Pikmin.exe
+C:\Users\Gateway\Programs\Pikmin\Pikmin\obj\x86\Debug\Pikmin.pdb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\personBack.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\Super Kills TF2.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\cursor.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\blueBullet.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\orangeBullet.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\portalWall.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\bluePortal.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\orangePortal.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\bluePortalSide.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\orangePortalSide.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\SpriteFont1.xnb
+C:\Users\Gateway\Programs\Pikmin\Pikmin\bin\x86\Debug\Content\emptyBox.xnb

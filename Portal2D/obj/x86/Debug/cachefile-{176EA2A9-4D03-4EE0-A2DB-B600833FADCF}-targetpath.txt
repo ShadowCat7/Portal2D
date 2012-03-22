@@ -1,0 +1,13 @@
+Content\Sprites\wallBox.xnb
+Content\Sprites\personBack.xnb
+Content\Sprites\Super Kills TF2.xnb
+Content\Sprites\cursor.xnb
+Content\Sprites\blueBullet.xnb
+Content\Sprites\orangeBullet.xnb
+Content\Sprites\portalWall.xnb
+Content\Sprites\bluePortal.xnb
+Content\Sprites\orangePortal.xnb
+Content\Sprites\bluePortalSide.xnb
+Content\Sprites\orangePortalSide.xnb
+Content\Sprites\emptyBox.xnb
+Content\SpriteFont1.xnb
