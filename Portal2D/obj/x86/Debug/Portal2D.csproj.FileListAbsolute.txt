@@ -36,3 +36,7 @@ C:\Users\Gateway\Programs\Portal2D\Portal2D\obj\x86\Debug\ResolveAssemblyReferen
 C:\Users\Gateway\Programs\Portal2D\Portal2D\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Gateway\Programs\Portal2D\Portal2D\obj\x86\Debug\Portal2D.exe
 C:\Users\Gateway\Programs\Portal2D\Portal2D\obj\x86\Debug\Portal2D.pdb
+C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Portal2D.exe.manifest
+C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Portal2D.application
+C:\Users\Gateway\Programs\Portal2D\Portal2D\obj\x86\Debug\Portal2D.exe.manifest
+C:\Users\Gateway\Programs\Portal2D\Portal2D\obj\x86\Debug\Portal2D.application
