@@ -8,6 +8,18 @@ development and programming.
 
 -------------------------------------------------------------------------
 INSTRUCTIONS:
+
+To download the game, you can download the whole project and/or the
+folder named "Download". In the download folder you can run the
+executable file there, or run the entire project through the solution.
+Not having tested it, you may have to download the Microsoft XNA
+framework in order to run the game, and you will definitely have to 
+download the Microsoft .NET framework, although a Windows 7 computer
+will do that automatically if you have automatic updates on. If you do
+not, just update your computer manually, choosing just to update the
+.NET framework or all of the suggested updates.
+
+To play the game:
 Control the character using WASD.
 
 A mouse is also necessary to play this game.
@@ -28,6 +40,6 @@ but by Valve Corp. However, please do note the high score held by
 my engineer, and be in awe.
 
 -------------------------------------------------------------------------
-Portal is a copyright of Valve Corporations
+Portal is a copyright of Valve Corporation
 
-Team Fortress 2 is a copyright of Valve Corporations
+Team Fortress 2 is a copyright of Valve Corporation
