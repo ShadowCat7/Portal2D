@@ -44,8 +44,7 @@ namespace GameSpace
             spriteBatch = new SpriteBatch(GraphicsDevice);
             mouseElement.sprite = Content.Load<Texture2D>("Sprites/cursor");
 
-            currentRoom.player.sprites.Add(Content.Load<Texture2D>("Sprites/personBack"));
-            currentRoom.player.sprite = currentRoom.player.sprites[0];
+            currentRoom.player.sprite = Content.Load<Texture2D>("Sprites/personBack");
 
             currentRoom.player.blueBullet.sprite = Content.Load<Texture2D>("Sprites/blueBullet");
             currentRoom.player.orangeBullet.sprite = Content.Load<Texture2D>("Sprites/orangeBullet");
@@ -73,7 +72,7 @@ namespace GameSpace
             mouseElement.screenX = newMouseState.X - mouseElement.sprite.Bounds.Center.X;
             mouseElement.screenY = newMouseState.Y - mouseElement.sprite.Bounds.Center.Y;
 
-            currentRoom.Update(newKeyboardState, oldKeyboardState, newMouseState, oldMouseState, currentRoom.boxList);
+            currentRoom.Update(newKeyboardState, oldKeyboardState, newMouseState, oldMouseState);
 
             oldKeyboardState = newKeyboardState;
             oldMouseState = newMouseState;

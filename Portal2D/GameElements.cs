@@ -10,51 +10,88 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+//TODO:
+//  1. get and set for each variable,
+//  2. public and private for each variable.
+
 namespace GameSpace
 {
+    //  Summary:
+    //      This class holds the size of the screen.
     public static class Screen
     { static public int X = 800, Y = 480; }
+    //  Summary:
+    //      This class holds the size of the screen when it is split in half x-wise.
     public static class SplitScreen
     { static public int X = 400, Y = 480; }
 
+    // Summary:
+    //      The parent for all rooms.
     public abstract class Room
     {
+        //  Summary:
+        //      The image for the background of the room.
         public Texture2D background;
+        //  Summary:
+        //      The size of the room.
         public int sizeX, sizeY;
+        //  Summary:
+        //      The variable size of the screen. The X value will change when the screen is split.
         public int screenX, screenY;
+        //  Summary:
+        //      The top left position of the view that fits on the screen.
         public int onScreenX, onScreenY;
+        //  Summary:
+        //      The top left position of the viewthat fits on the right side of the split screen.
         public int portedOnScreenX, portedOnScreenY;
+        //  Summary:
+        //      The list of boxes in the room.
         public List<Box> boxList;
+        //  Summary:
+        //      The user's character in the room.
         public Player player;
-        public Portal bluePortal;
-        public Portal orangePortal;
+        //  Summary:
+        //      The room's portals. There are two: the blue and orange portals.
+        public Portal bluePortal, orangePortal;
 
-        public Room()
-        {
-            boxList = new List<Box>(0);
-            player = new Player(100, 100, 4);
-            bluePortal = new Portal();
-            orangePortal = new Portal();
-        }
+        //  Summary:
+        //      Initializes the room. Only provided as the default constructor for the Room's children.
+        public Room() { }
+        //  Summary:
+        //      Draws the background of the room.
+        //  
+        //  Parameters:
+        //      spriteBatch:
+        //          The SpriteBatch for the game.
         public void DrawBackground(SpriteBatch spriteBatch)
         { spriteBatch.Draw(background, new Vector2(0, 0), Color.White); }
 
-        //virtual methods
-        public virtual void Update(KeyboardState newKeyboardState, KeyboardState oldKeyboardstate, MouseState newMouseState, MouseState oldMouseState, List<Box> boxList) { }
+        //Virtual methods
+        public virtual void Update(KeyboardState newKeyboardState, KeyboardState oldKeyboardstate, MouseState newMouseState, 
+            MouseState oldMouseState) { }
         public virtual void Draw(SpriteBatch spriteBatch) { }
 
-        //virtual methods for GameRoom
+        //Virtual methods for GameRoom
         public virtual void setBoxSprites(Texture2D normalWallSprite, Texture2D portalWallSprite, Texture2D emptyFloorSprite) { }
         public virtual void drawBoxes(SpriteBatch spriteBatch) { }
         public virtual void AddBoxesAround() { }
     }
 
+    //  Summary:
+    //      The parent class for rooms that will have game play.
     public class GameRoom : Room
     {
+        //  Summary:
+        //      Initializes the GameRoom.
+        //      Provides initialization for the room size, the list of boxes, the player,
+        //      the boxes surroundingElement the room, the screen size, and the two portals.
         public GameRoom()
         {
             sizeX = 1600;
             sizeY = 1000;
+
+            boxList = new List<Box>(0);
+            player = new Player(100, 100, 4);
 
             AddBoxesAround();
 
@@ -70,6 +107,8 @@ namespace GameSpace
             boxList.Add(new Box(1400, 400, true, false));
         }
 
+        //  Summary:
+        //      Adds boxes to the list of boxes that will surround the room.
         public override void AddBoxesAround()
         {
             for (int i = 0; i < sizeX; i += 100)
@@ -82,9 +121,27 @@ namespace GameSpace
             { boxList.Add(new Box(0, i, false, false)); }
         }
 
-        public override void Update(KeyboardState newKeyboardState, KeyboardState oldKeyboardstate, MouseState newMouseState, MouseState oldMouseState, List<Box> boxList)
+        //  Summary:
+        //      Updates the logic of the GameRoom.
+        //
+        //  Parameters:
+        //
+        //      newKeyboardState:
+        //          The current KeyboardState.
+        //
+        //      oldKeyboardState:
+        //          The previous KeyboardState.
+        //
+        //      newMouseState:
+        //          The current MouseState.
+        //
+        //      oldMouseState:
+        //          The previous MouseState.
+        public override void Update(KeyboardState newKeyboardState, KeyboardState oldKeyboardstate, MouseState newMouseState, 
+            MouseState oldMouseState)
         {
-            player.Update(newKeyboardState, oldKeyboardstate, newMouseState, oldMouseState, boxList, ref bluePortal, ref orangePortal);
+            player.Update(newKeyboardState, oldKeyboardstate, newMouseState, oldMouseState, boxList, ref bluePortal, 
+                ref orangePortal);
 
             if (player.ported)
             {
@@ -97,6 +154,8 @@ namespace GameSpace
                 screenY = Screen.Y;
             }
 
+            // Finds the position of the player on the screen with regard to its position in the room
+            // for the purpose of scrolling.
             if (player.roomX + player.sprite.Bounds.Center.X <= screenX / 2)
             {
                 player.screenX = player.roomX;
@@ -129,17 +188,20 @@ namespace GameSpace
                 onScreenY = player.roomY + player.sprite.Bounds.Center.Y - screenY / 2;
             }
 
+            // Puts the boxes on the screen in their screen position with regard to their room position.
             for (int i = 0; i < boxList.Count; i++)
             {
                 boxList[i].screenX = boxList[i].roomX - onScreenX;
                 boxList[i].screenY = boxList[i].roomY - onScreenY;
             }
 
+            // Puts the bullets on the screen in their screen position with regard to their room position.
             player.blueBullet.screenX = player.blueBullet.roomX - onScreenX;
             player.blueBullet.screenY = player.blueBullet.roomY - onScreenY;
             player.orangeBullet.screenX = player.orangeBullet.roomX - onScreenX;
             player.orangeBullet.screenY = player.orangeBullet.roomY - onScreenY;
 
+            // Puts the portals on the screen in their screen position with regard to their room position.
             if (bluePortal.exists)
             {
                 bluePortal.screenX = bluePortal.roomX - onScreenX;
@@ -151,8 +213,10 @@ namespace GameSpace
                 orangePortal.screenY = orangePortal.roomY - onScreenY;
             }
 
+            // Puts everything that is on the viewport of the players ported position in its screen position.
             if (player.ported)
             {
+                // For the player.
                 if (player.portedRoomX + player.sprite.Bounds.Center.X <= screenX / 2)
                 {
                     player.portedScreenX = player.portedRoomX + screenX;
@@ -185,17 +249,20 @@ namespace GameSpace
                     portedOnScreenY = player.portedRoomY + player.sprite.Bounds.Center.Y - screenY / 2;
                 }
 
+                // For the boxes.
                 for (int i = 0; i < boxList.Count; i++)
                 {
                     boxList[i].portedScreenX = boxList[i].roomX - portedOnScreenX + 400;
                     boxList[i].portedScreenY = boxList[i].roomY - portedOnScreenY;
                 }
 
+                // For the bullets.
                 player.blueBullet.portedScreenX = player.blueBullet.roomX - portedOnScreenX + 400;
                 player.blueBullet.portedScreenY = player.blueBullet.roomY - portedOnScreenY;
                 player.orangeBullet.portedScreenX = player.orangeBullet.roomX - portedOnScreenX + 400;
                 player.orangeBullet.portedScreenY = player.orangeBullet.roomY - portedOnScreenY;
 
+                // For the portals.
                 if (bluePortal.exists)
                 {
                     bluePortal.portedScreenX = bluePortal.roomX - portedOnScreenX + 400;
@@ -208,6 +275,18 @@ namespace GameSpace
                 }
             }
         }
+
+        //  Summary:
+        //      Draws the images in the room.
+        //      Draws images in this order:
+        //      Background, empty boxes, player, blue bullet, orange bullet, the rest of the boxes,
+        //      blue portal, and the orange portal. Then it does the same for the other viewport
+        //      if it exists.
+        //
+        //  Parameters:
+        //
+        //      spriteBatch:
+        //          The SpriteBatch for the game.
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Vector2(0, 0), new Rectangle(onScreenX, onScreenY, Screen.X, Screen.Y), Color.White);
@@ -216,9 +295,9 @@ namespace GameSpace
                 if (boxList[i].empty)
                 { spriteBatch.Draw(boxList[i].sprite, new Vector2(boxList[i].screenX, boxList[i].screenY), Color.White); }
             }
-            spriteBatch.Draw(player.sprite, new Rectangle(player.screenX + player.sprite.Bounds.Center.X, player.screenY + player.sprite.Bounds.Center.Y, player.sprite.Width, player.sprite.Height), 
+            spriteBatch.Draw(player.sprite, new Rectangle(player.screenX + player.sprite.Bounds.Center.X, player.screenY + player.sprite.Bounds.Center.Y, player.sprite.Width, player.sprite.Height),
                 null, Color.White, (float)player.direction, new Vector2(player.sprite.Bounds.Center.X, player.sprite.Bounds.Center.Y), new SpriteEffects(), 0);
-            
+
             player.blueBullet.Draw(spriteBatch);
             player.orangeBullet.Draw(spriteBatch);
 
@@ -228,7 +307,7 @@ namespace GameSpace
 
             if (player.ported)
             {
-                spriteBatch.Draw(background, new Vector2(400, 0), new Rectangle(portedOnScreenX, portedOnScreenY, SplitScreen.X, SplitScreen.Y),Color.White);
+                spriteBatch.Draw(background, new Vector2(400, 0), new Rectangle(portedOnScreenX, portedOnScreenY, SplitScreen.X, SplitScreen.Y), Color.White);
                 spriteBatch.Draw(player.sprite, new Rectangle(player.portedScreenX + player.sprite.Bounds.Center.X, player.portedScreenY + player.sprite.Bounds.Center.Y, player.sprite.Width, player.sprite.Height),
                 null, Color.White, (float)player.direction, new Vector2(player.sprite.Bounds.Center.X, player.sprite.Bounds.Center.Y), new SpriteEffects(), 0);
 
@@ -245,7 +324,21 @@ namespace GameSpace
             }
         }
 
-        public override void setBoxSprites(Texture2D normalWallSprite, Texture2D portalWallSprite, Texture2D emptyFloorSprite)
+        //  Summary:
+        //      Sets the sprites for every box in the list of boxes.
+        //
+        //  Parameters:
+        //
+        //      normalWallSprite:
+        //          The image of the normal wall.
+        //
+        //      portalWallSprite:
+        //          The image of the wall that can hold portals.
+        //
+        //      emptyFloorSprite:
+        //          The image of the empty pit.
+        public override void setBoxSprites(Texture2D normalWallSprite, Texture2D portalWallSprite, 
+            Texture2D emptyFloorSprite)
         {
             for (int i = 0; i < boxList.Count; i++)
             {
@@ -257,6 +350,14 @@ namespace GameSpace
                 { boxList[i].sprite = normalWallSprite; }
             }
         }
+
+        //  Summary:
+        //      Draws all the boxes that are not empty boxes.
+        //
+        //  Parameters:
+        //      
+        //      spriteBatch
+        //          The SpriteBatch for the game.
         public override void drawBoxes(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < boxList.Count; i++)
@@ -267,26 +368,70 @@ namespace GameSpace
         }
     }
 
+    //  Summary:
+    //      The parent class for everything in a room.
     public class Element
     {
+        //  Summary:
+        //      The position the element has on the screen.
         public int screenX, screenY;
+        //  Summary:
+        //      The position the element has in the room.
         public int roomX, roomY;
-        public int centerX, centerY;
+        //  Summary:
+        //      The position the element has on the right viewport.
         public int portedScreenX, portedScreenY;
+        //  Summary:
+        //      The flag that, if true, says that the mouse is currently hovering over the element.
         public bool mouseOver;
-        public bool onScreen;
+        //  Summary:
+        //      The flag that, if true, says that the element currently exists in the game.
         public bool exists;
+        //  Summary:
+        //      The image of the element.
         public Texture2D sprite;
+        //  Summary:
+        //      The images that the element can use as its image.
         public List<Texture2D> sprites;
+        //  Summary:
+        //      Initializes the element. This is only provided as the default constructor
+        //      for the element's children.
         public Element() { }
+        //  Summary:
+        //      Initializes the element.
+        //      Provides initialization for the room position, the mouse detection, the list of
+        //      sprites, and the flag for being on the screen.
+        //
+        //  Parameters:
+        //
+        //      argX, argY:
+        //          The integers for the position of the element.
         public Element(int argX, int argY)
         {
             roomX = argX;
             roomY = argY;
             mouseOver = false;
             sprites = new List<Texture2D>(0);
-            onScreen = true;
         }
+        //  Summary:
+        //      Updates the logic for the element.
+        public virtual void Update() { }
+        //  Summary:
+        //      Updates the logic for the element.
+        //      This is specifically for the inherited member of Player.
+        public virtual void Update(KeyboardState newKeyboardState, KeyboardState oldKeyboardState, MouseState newMouseState,
+            MouseState oldMouseState, List<Box> boxList, ref Portal bluePortal, ref Portal orangePortal) { }
+        //  Summary:
+        //      Updates the logic for the element.
+        //      This is specifically for the inherited member of Bullet.
+        public virtual void Update(List<Element> boxList, ref Portal portal, ref Portal otherPortal) { }
+        //  Summary:
+        //      Draws the image of the element.
+        //
+        //  Parameters:
+        //
+        //      spriteBatch:
+        //          The SpriteBatch for the game.
         public void Draw(SpriteBatch spriteBatch)
         {
             if (exists)
@@ -294,40 +439,100 @@ namespace GameSpace
         }
     }
 
+    //  Summary:
+    //      The class for boxes.
+    //      Boxes are used as walls and empty pits.
     public class Box : Element
     {
+        //  Summary:
+        //      The flag that, if true, says that the box can hold portals.
         public bool portalUse;
+        //  Summary:
+        //      The flag that, if true, says that the box is an empty pit.
         public bool empty;
+        //  Summary:
+        //      Initializes the box.
+        //      Initializes the box's position in the room, the mouse detection, the list of
+        //      sprites, the flag for holding portals, and the flag for being an empty pit.
+        //
+        //  Parameters:
+        //
+        //      argX, argY:
+        //          The integers for the position of the box.
+        //
+        //      portalBox:
+        //          A bool that, if true, makes the box able to hold portals.
+        //
+        //      emptyBox:
+        //          A bool that, if true, makes the box an empty pit.
         public Box(int argX, int argY, bool portalBox, bool emptyBox)
         {
             roomX = argX;
             roomY = argY;
             mouseOver = false;
             sprites = new List<Texture2D>(0);
-            onScreen = true;
             portalUse = portalBox;
             empty = emptyBox;
         }
     }
 
+    //  Summary:
+    //      The class for the user's input.
+    //      The player is the character.
     public class Player : Element
     {
-        public int Speed;
+        //  Summary:
+        //      The amount of pixels moved in one unit of gametime.
+        private int speed;
+        //  Summary:
+        //      The flag that, if true, says that the player is currently in a portal.
+        //      How this is different from the bool porting:
+        //          Porting:
+        //          The flag that, if true, says that the player is currently moving through
+        //          a portal.
         public bool ported;
-        public bool porting;
+        //  Summary:
+        //      The flag that, if true, says that the player is currently moving through a portal.
+        //      How this is different from the bool ported:
+        //          Ported:
+        //          The flag that, if true, says that the player is currently in a portal.
+        private bool porting;
+        //  Summary:
+        //      The position of the player's image on the other viewport.
         public int portedRoomX, portedRoomY;
-        public double portedDirection;
+        //  Summary:
+        //      The direction that the player is facing while moving through a portal.
+        private double portedDirection;
 
+        //  Summary:
+        //      The direction that the player is currently facing.
         public double direction;
-        public Bullet blueBullet;
-        public Bullet orangeBullet;
-        public int rateOfFire;
+        //  Summary:
+        //      The bullets of the player.
+        //      There are two bullets, the blue bullet and the orange bullet, that
+        //      correspond to the two portals.
+        public Bullet blueBullet, orangeBullet;
+        //  Summary:
+        //      The counter for the amount of time it takes to shoot another bullet.
+        private int rateOfFire;
+        //  Summary:
+        //      Initializes the player.
+        //      Initializes the player's position in the room, the player's speed, the
+        //      list of sprites, the bullets, the flag for existence, the flags for
+        //      porting and touching a portal, and the rate of fire counter.
+        //
+        //  Parameters:
+        //
+        //      argX, argY:
+        //          The integers for the position of the player.
+        //
+        //      argSpeed:
+        //          The integer that represents the speed of the player.
         public Player(int argX, int argY, int argSpeed)
         {
             roomX = argX;
             roomY = argY;
-            Speed = argSpeed;
-            sprites = new List<Texture2D>(0);
+            speed = argSpeed;
             blueBullet = new Bullet();
             orangeBullet = new Bullet();
             exists = true;
@@ -335,19 +540,57 @@ namespace GameSpace
             porting = false;
             rateOfFire = -1;
         }
-        public void Update(KeyboardState newKeyboardState, KeyboardState oldKeyboardState, MouseState newMouseState, MouseState oldMouseState, List<Box> boxList,
-                      ref Portal bluePortal, ref Portal orangePortal)
+
+        //  Summary:
+        //      Updates the logic for the player.
+        //      Determines collisions, movement, and portal logic.
+        //      This is by far the largest update method in the game. As such it has been broken
+        //      down and summarized as well.
+        //
+        //  Parameters:
+        //
+        //      newKeyboardState:
+        //          The current KeyboardState.
+        //
+        //      oldKeyboardState:
+        //          The previous KeyboardState.
+        //
+        //      newMouseState:
+        //          The current MouseState.
+        //
+        //      oldMouseState:
+        //          The previous MouseState.
+        //
+        //      boxList:
+        //          The list of boxes in the current room.
+        //
+        //      bluePortal:
+        //          The blue portal in the room.
+        //
+        //      orangePortal:
+        //          The orange portal in the room.
+        public override void Update(KeyboardState newKeyboardState, KeyboardState oldKeyboardState, MouseState newMouseState, 
+            MouseState oldMouseState, List<Box> boxList, ref Portal bluePortal, ref Portal orangePortal)
         {
+            //  Summary:
+            //      These four bools determine the directions possible.
             bool up = true,
                  down = true,
                  left = true,
                  right = true;
-            for (int count = 0; count < Speed; count++)
+            //  Summary:
+            //      The programming behind collision testing is to test for a collision
+            //      after each individual X and Y change.
+            for (int count = 0; count < speed; count++)
             {
                 for (int i = 0; i < boxList.Count; i++)
                 {
+                    //  Summary:
+                    //      The collision testing for detecting where the collision
+                    //      happened is split into vertical and horizontal tests.
                     if (!boxList[i].empty)
                     {
+                        // The direction is represented in radians.
                         double tempDouble = Collision.TestVertical(this, boxList[i]);
                         if (tempDouble == 0)
                         { up = false; }
@@ -359,6 +602,9 @@ namespace GameSpace
                         if (tempDouble == Math.PI / 2)
                         { right = false; }
                     }
+                    //  Summary:
+                    //      TODO: Not currently set up. Will eventually say if the player
+                    //      has fallen into a hole, and the consequences of that.
                     else
                     {
                         if (Collision.TestCompletelyInside(this, boxList[i]))
@@ -366,24 +612,35 @@ namespace GameSpace
                     }
                 }
 
+                // Temporary bools to detect collisions with portals.
                 bool bluePortalporting = false;
                 bool orangePortalporting = false;
 
+                // Both portals must exist for there to be a collision.
                 if (bluePortal.exists && orangePortal.exists)
-                { bluePortal.Porting(this, ref roomX, ref roomY, ref bluePortalporting, orangePortal, ref portedRoomX, ref portedRoomY, ref portedDirection, ref up, ref down, ref left, ref right); }
+                { bluePortal.Porting(this, ref roomX, ref roomY, ref bluePortalporting, ref up, ref down, ref left, 
+                    ref right); }
                 if (bluePortal.exists && orangePortal.exists)
-                { orangePortal.Porting(this, ref roomX, ref roomY, ref orangePortalporting, bluePortal, ref portedRoomX, ref portedRoomY, ref portedDirection, ref up, ref down, ref left, ref right); }
+                { orangePortal.Porting(this, ref roomX, ref roomY, ref orangePortalporting, ref up, ref down, ref left, 
+                    ref right); }
+                
+                // The temporary bools are set up to tell which portal the player collided with.
                 if (bluePortalporting || orangePortalporting)
                 { ported = true; }
                 else
                 { ported = false; }
 
+                //  Summary:
+                //      The otherPortal is used to abstractly refer to the portal not currently being collided with.
                 Portal otherPortal = new Portal();
                 if (bluePortalporting)
                 { otherPortal = orangePortal; }
                 else
                 { otherPortal = bluePortal; }
 
+                //  Summary:
+                //      Gets the position of the player at the other portal.
+                //      Remember: ported is for collisions, porting is for moving through portals.
                 if (ported && !porting)
                 {
                     if (otherPortal.portalDirection == 0)
@@ -408,9 +665,14 @@ namespace GameSpace
                     }
                 }
 
+                // When the spacebar is pressed, the player will be moving through portals.
                 if (ported && !porting && newKeyboardState.IsKeyDown(Keys.Space) && !oldKeyboardState.IsKeyDown(Keys.Space))
                 { porting = true; }
 
+                //  Summary:
+                //      Sets up the player's direction while moving through the portal, and
+                //      moves it through the portal far enough to no longer be colliding with
+                //      the other portal.
                 if (porting)
                 {
                     if (otherPortal.portalDirection == 0)
@@ -421,7 +683,6 @@ namespace GameSpace
                         {
                             roomX = portedRoomX;
                             roomY = portedRoomY;
-                            ported = false;
                         }
                     }
                     if (otherPortal.portalDirection == Math.PI)
@@ -432,7 +693,6 @@ namespace GameSpace
                         {
                             roomX = portedRoomX;
                             roomY = portedRoomY;
-                            ported = false;
                         }
                     }
                     if (otherPortal.portalDirection == Math.PI / 2)
@@ -443,7 +703,6 @@ namespace GameSpace
                         {
                             roomX = portedRoomX;
                             roomY = portedRoomY;
-                            ported = false;
                         }
                     }
                     if (otherPortal.portalDirection == -Math.PI / 2)
@@ -454,13 +713,14 @@ namespace GameSpace
                         {
                             roomX = portedRoomX;
                             roomY = portedRoomY;
-                            ported = false;
                         }
                     }
                 }
-
+                // If the player is not moving through a portal.
                 else
                 {
+                    //  Summary:
+                    //      The key being pressed and corresponding directional bool must both be true.
                     if (newKeyboardState.IsKeyDown(Keys.W) && up)
                     { roomY -= 1; }
                     if (newKeyboardState.IsKeyDown(Keys.S) && down)
@@ -470,6 +730,7 @@ namespace GameSpace
                     if (newKeyboardState.IsKeyDown(Keys.D) && right)
                     { roomX += 1; }
 
+                    // Prevents the sprite from moving when opposite directions are pressed.
                     if (newKeyboardState.IsKeyDown(Keys.A) && newKeyboardState.IsKeyDown(Keys.D))
                     {
                         if (left)
@@ -485,24 +746,31 @@ namespace GameSpace
                         { roomY -= 1; }
                     }
 
+                    // Finds the slope of the line from the screen positions of the player and the mouse.
                     direction = Math.Atan2(newMouseState.Y - screenY, newMouseState.X - screenX) + Math.PI / 2;
                 }
             }
 
+            // If there is no collision with a portal, then the player is not moving through a portal.
             if (!ported)
             { porting = false; }
 
-            if (newMouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed && !blueBullet.exists && !ported && rateOfFire == -1)
+            //  Summary:
+            //      Fires bullets if the rate of fire counter has caught up.
+            //      The two MouseStates prevent rapid fire from holding down the button.
+            if (newMouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed
+                && !blueBullet.exists && !ported && rateOfFire == -1)
             {
                 blueBullet.Fired(roomX + sprite.Bounds.Center.X, roomY + sprite.Bounds.Center.Y, direction);
                 rateOfFire = 0;
             }
-
-            if (newMouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton != ButtonState.Pressed && !orangeBullet.exists && !ported && rateOfFire == -1)
+            if (newMouseState.RightButton == ButtonState.Pressed && oldMouseState.RightButton != ButtonState.Pressed && 
+                !orangeBullet.exists && !ported && rateOfFire == -1)
             {
                 orangeBullet.Fired(roomX + sprite.Bounds.Center.X, roomY + sprite.Bounds.Center.Y, direction);
                 rateOfFire = 0;
             }
+            // Adds to the rate of fire after a bullet has been fired.
             if (rateOfFire > -1)
             {
                 rateOfFire += 1;
@@ -510,6 +778,7 @@ namespace GameSpace
                 { rateOfFire = -1; }
             }
 
+            // Bullet logic can only happen if the bullets exist.
             if (blueBullet.exists)
             { blueBullet.Update(boxList, ref bluePortal, ref orangePortal); }
             if (orangeBullet.exists)
@@ -517,16 +786,44 @@ namespace GameSpace
         }
     }
 
+    //  Summary:
+    //      The class for the bullets that the player shoots. These create portals.
     public class Bullet : Element
     {
-        public double direction;
-        public double doubleX, doubleY;
+        //  Summary:
+        //      The direction the bullet is travelling, in radians.
+        //      This is also the direction that the player is or was facing when the bullet was fired.
+        private double direction;
+        //  Summary:
+        //      The position of the bullet as a decimal.
+        //      This information is required due to the truncation caused by using integers.
+        private double doubleX, doubleY;
+        //  Summary:
+        //      Initializes the bullet.
+        //      Initializes the bullet's position and its existence.
         public Bullet()
         {
             roomX = 0;
             roomY = 0;
             exists = false;
         }
+        //  Summary:
+        //      Updates the logic for the bullet.
+        //      Uses similar logic for collisions as the Player class. Checks for collisions
+        //      with boxes and portals. Makes a portal if the bullet collides with a box that
+        //      can hold a portal.
+        //
+        //  Parameters:
+        //      
+        //      boxList:
+        //          The list of boxes in the current room.
+        //
+        //      portal:
+        //          The portal that the bullet will create if it collides with a box that
+        //          can hold a portal.
+        //
+        //      otherPortal:
+        //          The portal that the bullet cannot create.
         public void Update(List<Box> boxList, ref Portal portal, ref Portal otherPortal)
         {
             doubleX = roomX;
@@ -545,7 +842,7 @@ namespace GameSpace
                     if (Collision.Test(this, boxList[i]) && exists)
                     {
                         if (boxList[i].portalUse)
-                        { portalMade(boxList[i], ref portal, ref this.exists); }
+                        { portalMade(boxList[i], ref portal, ref exists); }
                         else if (!boxList[i].empty)
                         { exists = false; }
                     }
@@ -559,6 +856,19 @@ namespace GameSpace
             }
         }
 
+        //  Summary:
+        //      Finds the part of the box the bullet collided with.
+        //
+        //  Parameters:
+        //
+        //      portalBox:
+        //          The box the bullet collided with. This box must be able to hold portals.
+        //
+        //      portal:
+        //          The portal that will be made.
+        //
+        //      bulletExists:
+        //          The bool that says whether the bullet exists.
         public void portalMade(Box portalBox, ref Portal portal, ref bool bulletExists)
         {
             double tempDouble = Collision.TestVertical(this, portalBox);
@@ -567,6 +877,17 @@ namespace GameSpace
             portal.Created(portalBox, tempDouble, ref bulletExists);
         }
 
+        //  Summary:
+        //      Instantiates the bullet's position and direction when fired, and
+        //      makes the bullet exist.
+        //
+        //  Parameters:
+        //
+        //      positionX, positionY:
+        //          The position the bullet is fired from.
+        //
+        //      argDirection:
+        //          The direction the bullet will travel, in radians.
         public void Fired(int positionX, int positionY, double argDirection)
         {
             roomX = positionX;
@@ -576,15 +897,39 @@ namespace GameSpace
         }
     }
 
+    //  Summary:
+    //      The class for portals. These will transport the player to a different location.
     public class Portal : Element
     {
+        //  Summary:
+        //      The direction the portal is facing, in radians.
+        //      The number 10 was arbitrarily chosen as a null value.
         public double portalDirection;
+        //  Summary:
+        //      Instantiates the portal.
+        //      Instantiates the portals non-existence, its list of sprites, and
+        //      its direction as null (10).
         public Portal()
         {
             exists = false;
             sprites = new List<Texture2D>(0);
             portalDirection = 10;
         }
+        //  Summary:
+        //      Instantiates the portal when it is created by a bullet.
+        //      Instantiates the portal's position, using the box's position and the
+        //      facing of the portal, the portal's sprite, and then destroys the bullet.
+        //
+        //  Parameters:
+        //
+        //      portalBox:
+        //          The box that the bullet hit. Must be able to hold portals.
+        //
+        //      facing:
+        //          The direction that the portal will be facing, in radians.
+        //
+        //      bulletExists:
+        //          The flag for the existence of the bullet.
         public void Created(Box portalBox, double facing, ref bool bulletExists)
         {
             if (facing == 0)
@@ -625,9 +970,25 @@ namespace GameSpace
                 bulletExists = true;
             }
         }
-
-        public void Porting(Player player, ref int playerRoomX, ref int playerRoomY, ref bool ported, Portal otherPortal, 
-            ref int portedToX, ref int portedToY, ref double portedDirection, ref bool up, ref bool down, ref bool left, ref bool right)
+        //  Summary:
+        //      Checks the collision between the player and the portal, and keeps the player from
+        //      moving through the rest of the box.
+        //
+        //  Parameters:
+        //
+        //      player:
+        //          The Player in the game.
+        //
+        //      playerRoomX, playerRoomY:
+        //          The position of the player in the room.
+        //
+        //      ported:
+        //          The flag that says if there is a collision between the portal and the player.
+        //
+        //      up, down, left, right:
+        //          The directions that the player can go.
+        public void Porting(Player player, ref int playerRoomX, ref int playerRoomY, ref bool ported, ref bool up, 
+            ref bool down, ref bool left, ref bool right)
         {
             if (portalDirection == 0)
             {
@@ -699,8 +1060,18 @@ namespace GameSpace
         }
     }
 
+    //  Summary:
+    //      The class that tests collisions.
     public static class Collision
     {
+        //  Summary:
+        //      Tests the corners of the first element insideElement the corners of the second element,
+        //      then switches the elements and does the same thing.
+        //
+        //  Parameters:
+        //
+        //      element1, element2:
+        //          An element.
         public static bool Test(Element element1, Element element2)
         {
             if (element1.roomX >= element2.roomX && element1.roomX <= element2.roomX + element2.sprite.Width)
@@ -739,17 +1110,36 @@ namespace GameSpace
 
             return false;
         }
-
-        public static bool TestCoordinate(int argX, int argY, Element element2)
+        //  Summary:
+        //      Tests the coordinate insideElement the corneres of the element.
+        //
+        //  Parameters:
+        //
+        //      argX, argY:
+        //          The coordinate that will be tested.
+        //
+        //      element:
+        //          The element that will be tested.
+        public static bool TestCoordinate(int argX, int argY, Element element)
         {
-            if (argX >= element2.roomX && argX <= element2.roomX + element2.sprite.Width)
+            if (argX >= element.roomX && argX <= element.roomX + element.sprite.Width)
             {
-                if (argY >= element2.roomY && argY <= element2.roomY + element2.sprite.Height)
+                if (argY >= element.roomY && argY <= element.roomY + element.sprite.Height)
                 { return true; }
             }
             return false;
         }
-
+        //  Summary:
+        //      Tests for a collision on the top and bottom of element1 with element2.
+        //      The double returned is in radians.
+        //
+        //  Parameters:
+        //
+        //      element1:
+        //          The element that wil have its top and bottom tested.
+        //
+        //      element2:
+        //          The element that will be tested.
         public static double TestVertical(Element element1, Element element2)
         {
             if ((element1.roomX >= element2.roomX && element1.roomX <= element2.roomX + element2.sprite.Width - 1) || (element1.roomX + element1.sprite.Width >= element2.roomX + 1 && element1.roomX + element1.sprite.Width <= element2.roomX + element2.sprite.Width))
@@ -761,7 +1151,17 @@ namespace GameSpace
             }
             return 10;
         }
-
+        //  Summary:
+        //      Tests for a collision on the left and right of element1 with element2.
+        //      The double returned is in radians.
+        //
+        //  Parameters:
+        //
+        //      element1:
+        //          The element that wil have its left and right tested.
+        //
+        //      element2:
+        //          The element that will be tested.
         public static double TestHorizontal(Element element1, Element element2)
         {
             if ((element1.roomY >= element2.roomY && element1.roomY <= element2.roomY + element2.sprite.Height - 1) || (element1.roomY + element1.sprite.Height >= element2.roomY + 1 && element1.roomY + element1.sprite.Height <= element2.roomY + element2.sprite.Height))
@@ -773,24 +1173,25 @@ namespace GameSpace
             }
             return 10;
         }
-
-        public static bool TestCompletelyInside(Element inside, Element surrounding)
+        //  Summary:
+        //      Tests the corners of the inside element inside the surrounding element.
+        //      It will only return true if all the corners are inside the surrounding element.
+        //
+        //  Parameters:
+        //
+        //      insideElement:
+        //          The element that will be tested if inside the surrounding element.
+        //
+        //      surroundingElement:
+        //          The element that will be tested if surrounding the inside element.
+        public static bool TestCompletelyInside(Element insideElement, Element surroundingElement)
         {
-            if (inside.roomX >= surrounding.roomX && inside.roomX + inside.sprite.Width <= surrounding.roomX + surrounding.sprite.Width)
+            if (insideElement.roomX >= surroundingElement.roomX && insideElement.roomX + insideElement.sprite.Width <= surroundingElement.roomX + surroundingElement.sprite.Width)
             {
-                if (inside.roomY >= surrounding.roomY && inside.roomY + inside.sprite.Height <= surrounding.roomY + surrounding.sprite.Height)
+                if (insideElement.roomY >= surroundingElement.roomY && insideElement.roomY + insideElement.sprite.Height <= surroundingElement.roomY + surroundingElement.sprite.Height)
                 { return true; }
             }
             return false;
-        }
-    }
-
-    public static class RoomChanger
-    {
-        static Room Change(Room roomChange, Player keepPlayer)
-        {
-            roomChange.player = keepPlayer;
-            return roomChange;
         }
     }
 }
