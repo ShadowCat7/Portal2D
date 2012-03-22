@@ -1,0 +1,33 @@
+v.0.1
+
+This game is Portal 'demade' as a top-down puzzle game.
+
+Portal is a copyright of Valve Corp., and as such, I am not claiming this
+material as originally my own. This game is really just practice in game
+development and programming.
+
+-------------------------------------------------------------------------
+INSTRUCTIONS:
+Control the character using WASD.
+
+A mouse is also necessary to play this game.
+The mouse position aims the portal gun.
+Left click and right click to shoot portals.
+
+When entering a portal, press the spacebar to move through.
+
+As in the original Portal, the light gray blocks can support portals,
+and the dark gray blocks do not. The black blocks are "pits 'o death",
+but have not been implemented yet.
+
+-------------------------------------------------------------------------
+NOTE:
+The background was an arbitrarily chosen screenshot of the
+Team Fortress 2 loading screen, and again, was not created by me, 
+but by Valve Corp. However, please do note the high score held by
+my engineer, and be in awe.
+
+-------------------------------------------------------------------------
+Portal is a copyright of Valve Corporations
+
+Team Fortress 2 is a copyright of Valve Corporations
