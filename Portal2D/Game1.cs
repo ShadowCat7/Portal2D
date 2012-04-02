@@ -30,7 +30,7 @@ namespace GameSpace
             Content.RootDirectory = "Content";
             oldKeyboardState = new KeyboardState();
 
-            currentRoom = new GameRoom();
+            currentRoom = new Room1();
 
             mouseElement = new Element();
             mouseElement.exists = true;
@@ -58,12 +58,14 @@ namespace GameSpace
             currentRoom.orangePortal.sprites.Add(Content.Load<Texture2D>("Sprites/orangePortal"));
             currentRoom.orangePortal.sprites.Add(Content.Load<Texture2D>("Sprites/orangePortalSide"));
 
+            currentRoom.screenSplitter = Content.Load<Texture2D>("Sprites/splitscreen");
+
             font = Content.Load<SpriteFont>("SpriteFont1");
         }
 
 
         protected override void UnloadContent()
-        {}
+        { }
 
         protected override void Update(GameTime gameTime)
         {
@@ -90,7 +92,7 @@ namespace GameSpace
 
             mouseElement.Draw(spriteBatch);
 
-            //spriteBatch.DrawString(font, currentRoom.player.portedRoomY.ToString(), new Vector2(10, 10), Color.Black);
+            spriteBatch.DrawString(font, mouseElement.screenX.ToString(), new Vector2(10, 10), Color.Black);
 
             spriteBatch.End();
 

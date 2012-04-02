@@ -118,6 +118,15 @@
       <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
       <Time>2012-03-21T16:05:50.4116112-07:00</Time>
     </Item>
+    <Item>
+      <Source>Sprites\splitscreen.png</Source>
+      <Name>Sprites\splitscreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\splitscreen.xnb</Output>
+      <Time>2012-03-26T23:12:54.2743409-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

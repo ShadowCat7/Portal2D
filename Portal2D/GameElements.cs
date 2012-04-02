@@ -11,8 +11,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 //TODO:
-//  1. get and set for each variable,
-//  2. public and private for each variable.
+//  2. get and set for each variable,
+//  3. public and private for each variable.
 
 namespace GameSpace
 {
@@ -53,6 +53,9 @@ namespace GameSpace
         //  Summary:
         //      The room's portals. There are two: the blue and orange portals.
         public Portal bluePortal, orangePortal;
+        //  Summary:
+        //      The image that splits the screen when teleporting.
+        public Texture2D screenSplitter;
 
         //  Summary:
         //      Initializes the room. Only provided as the default constructor for the Room's children.
@@ -72,7 +75,8 @@ namespace GameSpace
         public virtual void Draw(SpriteBatch spriteBatch) { }
 
         //Virtual methods for GameRoom
-        public virtual void setBoxSprites(Texture2D normalWallSprite, Texture2D portalWallSprite, Texture2D emptyFloorSprite) { }
+        public virtual void setBoxSprites(Texture2D normalWallSprite, Texture2D portalWallSprite, Texture2D emptyFloorSprite) 
+        { }
         public virtual void drawBoxes(SpriteBatch spriteBatch) { }
         public virtual void AddBoxesAround() { }
     }
@@ -222,7 +226,7 @@ namespace GameSpace
                     player.portedScreenX = player.portedRoomX + screenX;
                     portedOnScreenX = 0;
                 }
-                else if (player.roomX + player.sprite.Bounds.Center.X >= sizeX - screenX / 2)
+                else if (player.portedRoomX + player.sprite.Bounds.Center.X >= sizeX - screenX / 2)
                 {
                     player.portedScreenX = 2 * screenX - (sizeX - player.portedRoomX);
                     portedOnScreenX = sizeX - screenX;
@@ -289,14 +293,17 @@ namespace GameSpace
         //          The SpriteBatch for the game.
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, new Vector2(0, 0), new Rectangle(onScreenX, onScreenY, Screen.X, Screen.Y), Color.White);
+            spriteBatch.Draw(background, new Vector2(0, 0), new Rectangle(onScreenX, onScreenY, Screen.X, Screen.Y), 
+                Color.White);
             for (int i = 0; i < boxList.Count; i++)
             {
                 if (boxList[i].empty)
                 { spriteBatch.Draw(boxList[i].sprite, new Vector2(boxList[i].screenX, boxList[i].screenY), Color.White); }
             }
-            spriteBatch.Draw(player.sprite, new Rectangle(player.screenX + player.sprite.Bounds.Center.X, player.screenY + player.sprite.Bounds.Center.Y, player.sprite.Width, player.sprite.Height),
-                null, Color.White, (float)player.direction, new Vector2(player.sprite.Bounds.Center.X, player.sprite.Bounds.Center.Y), new SpriteEffects(), 0);
+            spriteBatch.Draw(player.sprite, new Rectangle(player.screenX + player.sprite.Bounds.Center.X, 
+                player.screenY + player.sprite.Bounds.Center.Y, player.sprite.Width, player.sprite.Height),
+                null, Color.White, (float)player.direction, new Vector2(player.sprite.Bounds.Center.X, 
+                    player.sprite.Bounds.Center.Y), new SpriteEffects(), 0);
 
             player.blueBullet.Draw(spriteBatch);
             player.orangeBullet.Draw(spriteBatch);
@@ -307,20 +314,74 @@ namespace GameSpace
 
             if (player.ported)
             {
-                spriteBatch.Draw(background, new Vector2(400, 0), new Rectangle(portedOnScreenX, portedOnScreenY, SplitScreen.X, SplitScreen.Y), Color.White);
-                spriteBatch.Draw(player.sprite, new Rectangle(player.portedScreenX + player.sprite.Bounds.Center.X, player.portedScreenY + player.sprite.Bounds.Center.Y, player.sprite.Width, player.sprite.Height),
-                null, Color.White, (float)player.direction, new Vector2(player.sprite.Bounds.Center.X, player.sprite.Bounds.Center.Y), new SpriteEffects(), 0);
+                spriteBatch.Draw(background, new Vector2(400, 0), new Rectangle(portedOnScreenX, portedOnScreenY, 
+                    SplitScreen.X, SplitScreen.Y), Color.White);
+                spriteBatch.Draw(player.sprite, new Rectangle(player.portedScreenX + player.sprite.Bounds.Center.X, 
+                    player.portedScreenY + player.sprite.Bounds.Center.Y, player.sprite.Width, player.sprite.Height),
+                null, Color.White, (float)player.direction, new Vector2(player.sprite.Bounds.Center.X, 
+                    player.sprite.Bounds.Center.Y), new SpriteEffects(), 0);
 
                 for (int i = 0; i < boxList.Count; i++)
-                { spriteBatch.Draw(boxList[i].sprite, new Vector2(boxList[i].portedScreenX, boxList[i].portedScreenY), Color.White); }
+                {
+                    if (boxList[i].portedScreenX < SplitScreen.X)
+                    {
+                        if (boxList[i].portedScreenX + boxList[i].sprite.Width < SplitScreen.X)
+                        { }
+                        else
+                        { spriteBatch.Draw(boxList[i].sprite, new Vector2(SplitScreen.X, boxList[i].portedScreenY), 
+                            new Rectangle(SplitScreen.X - boxList[i].portedScreenX, 0, 
+                                boxList[i].sprite.Width - (SplitScreen.X - boxList[i].portedScreenX), 
+                                boxList[i].sprite.Height), Color.White); }
+                    }
+                    else
+                    { spriteBatch.Draw(boxList[i].sprite, new Vector2(boxList[i].portedScreenX, boxList[i].portedScreenY), 
+                        Color.White); }
+                }
 
                 if (player.blueBullet.exists)
-                { spriteBatch.Draw(player.blueBullet.sprite, new Vector2(player.blueBullet.portedScreenX, player.blueBullet.portedScreenY), Color.White); }
+                { spriteBatch.Draw(player.blueBullet.sprite, new Vector2(player.blueBullet.portedScreenX, 
+                    player.blueBullet.portedScreenY), Color.White); }
                 if (player.orangeBullet.exists)
-                { spriteBatch.Draw(player.orangeBullet.sprite, new Vector2(player.orangeBullet.portedScreenX, player.orangeBullet.portedScreenY), Color.White); }
+                { spriteBatch.Draw(player.orangeBullet.sprite, new Vector2(player.orangeBullet.portedScreenX, 
+                    player.orangeBullet.portedScreenY), Color.White); }
 
-                spriteBatch.Draw(bluePortal.sprite, new Vector2(bluePortal.portedScreenX, bluePortal.portedScreenY), Color.White);
-                spriteBatch.Draw(orangePortal.sprite, new Vector2(orangePortal.portedScreenX, orangePortal.portedScreenY), Color.White);
+                if (bluePortal.portedScreenX < SplitScreen.X)
+                {
+                    if (bluePortal.portedScreenX + bluePortal.sprite.Width < SplitScreen.X)
+                    { }
+                    else
+                    {
+                        spriteBatch.Draw(bluePortal.sprite, new Vector2(SplitScreen.X, bluePortal.portedScreenY),
+                                  new Rectangle(SplitScreen.X - bluePortal.portedScreenX, 0,
+                                      bluePortal.sprite.Width - (SplitScreen.X - bluePortal.portedScreenX),
+                                      bluePortal.sprite.Height), Color.White);
+                    }
+                }
+                else
+                {
+                    spriteBatch.Draw(bluePortal.sprite, new Vector2(bluePortal.portedScreenX, bluePortal.portedScreenY),
+                    Color.White);
+                }
+
+                if (orangePortal.portedScreenX < SplitScreen.X)
+                {
+                    if (orangePortal.portedScreenX + orangePortal.sprite.Width < SplitScreen.X)
+                    { }
+                    else
+                    {
+                        spriteBatch.Draw(orangePortal.sprite, new Vector2(SplitScreen.X, orangePortal.portedScreenY),
+                                  new Rectangle(SplitScreen.X - orangePortal.portedScreenX, 0,
+                                      orangePortal.sprite.Width - (SplitScreen.X - orangePortal.portedScreenX),
+                                      orangePortal.sprite.Height), Color.White);
+                    }
+                }
+                else
+                {
+                    spriteBatch.Draw(orangePortal.sprite, new Vector2(orangePortal.portedScreenX, orangePortal.portedScreenY),
+                    Color.White);
+                }
+
+                spriteBatch.Draw(screenSplitter, new Vector2(SplitScreen.X - 5, 0), Color.White);
             }
         }
 
@@ -500,9 +561,6 @@ namespace GameSpace
         //  Summary:
         //      The position of the player's image on the other viewport.
         public int portedRoomX, portedRoomY;
-        //  Summary:
-        //      The direction that the player is facing while moving through a portal.
-        private double portedDirection;
 
         //  Summary:
         //      The direction that the player is currently facing.
@@ -669,10 +727,15 @@ namespace GameSpace
                 if (ported && !porting && newKeyboardState.IsKeyDown(Keys.Space) && !oldKeyboardState.IsKeyDown(Keys.Space))
                 { porting = true; }
 
+                // If there is no collision with a portal, then the player is not moving through a portal.
+                if (!ported)
+                { porting = false; }
+
                 //  Summary:
                 //      Sets up the player's direction while moving through the portal, and
                 //      moves it through the portal far enough to no longer be colliding with
                 //      the other portal.
+
                 if (porting)
                 {
                     if (otherPortal.portalDirection == 0)
@@ -751,10 +814,6 @@ namespace GameSpace
                 }
             }
 
-            // If there is no collision with a portal, then the player is not moving through a portal.
-            if (!ported)
-            { porting = false; }
-
             //  Summary:
             //      Fires bullets if the rate of fire counter has caught up.
             //      The two MouseStates prevent rapid fire from holding down the button.
@@ -784,6 +843,54 @@ namespace GameSpace
             if (orangeBullet.exists)
             { orangeBullet.Update(boxList, ref orangePortal, ref bluePortal); }
         }
+    }
+
+    public class Sentry : Element
+    {
+        public double direction;
+
+        public Sentry(int argX, int argY, double facing)
+        {
+            roomX = argX;
+            roomY = argY;
+            direction = facing;
+            mouseOver = false;
+            sprites = new List<Texture2D>(0);
+        }
+
+        public void Update(Player player, List<Box> boxList)
+        {
+
+        }
+    }
+
+    public class Laser : Element
+    {
+        public double direction;
+
+        public Laser(LaserShooter laserShooter)
+        {
+            direction = laserShooter.direction;
+            if (direction == 0 || direction == Math.PI)
+            {
+                roomX = laserShooter.roomX + laserShooter.sprite.Bounds.Center.X;
+            }
+        }
+    }
+
+    public class LaserShooter : Element
+    {
+        public double direction;
+
+        public LaserShooter(int argX, int argY, double facing)
+        {
+
+        }
+    }
+
+    public class LaserCatcher : Element
+    {
+
     }
 
     //  Summary:
@@ -1078,14 +1185,17 @@ namespace GameSpace
             {
                 if (element1.roomY >= element2.roomY && element1.roomY <= element2.roomY + element2.sprite.Height)
                 { return true; }
-                if (element1.roomY + element1.sprite.Height >= element2.roomY && element1.roomY + element1.sprite.Height <= element2.roomY + element2.sprite.Height)
+                if (element1.roomY + element1.sprite.Height >= element2.roomY && element1.roomY + element1.sprite.Height <= 
+                    element2.roomY + element2.sprite.Height)
                 { return true; }
             }
-            if (element1.roomX + element1.sprite.Width >= element2.roomX && element1.roomX + element1.sprite.Width <= element2.roomX + element2.sprite.Width)
+            if (element1.roomX + element1.sprite.Width >= element2.roomX && element1.roomX + element1.sprite.Width <= 
+                element2.roomX + element2.sprite.Width)
             {
                 if (element1.roomY >= element2.roomY && element1.roomY <= element2.roomY + element2.sprite.Height)
                 { return true; }
-                if (element1.roomY + element1.sprite.Height >= element2.roomY && element1.roomY + element1.sprite.Height <= element2.roomY + element2.sprite.Height)
+                if (element1.roomY + element1.sprite.Height >= element2.roomY && element1.roomY + element1.sprite.Height <= 
+                    element2.roomY + element2.sprite.Height)
                 { return true; }
             }
 
@@ -1097,14 +1207,17 @@ namespace GameSpace
             {
                 if (element1.roomY >= element2.roomY && element1.roomY <= element2.roomY + element2.sprite.Height)
                 { return true; }
-                if (element1.roomY + element1.sprite.Height >= element2.roomY && element1.roomY + element1.sprite.Height <= element2.roomY + element2.sprite.Height)
+                if (element1.roomY + element1.sprite.Height >= element2.roomY && element1.roomY + element1.sprite.Height <= 
+                    element2.roomY + element2.sprite.Height)
                 { return true; }
             }
-            if (element1.roomX + element1.sprite.Width >= element2.roomX && element1.roomX + element1.sprite.Width <= element2.roomX + element2.sprite.Width)
+            if (element1.roomX + element1.sprite.Width >= element2.roomX && element1.roomX + element1.sprite.Width <= 
+                element2.roomX + element2.sprite.Width)
             {
                 if (element1.roomY >= element2.roomY && element1.roomY <= element2.roomY + element2.sprite.Height)
                 { return true; }
-                if (element1.roomY + element1.sprite.Height >= element2.roomY && element1.roomY + element1.sprite.Height <= element2.roomY + element2.sprite.Height)
+                if (element1.roomY + element1.sprite.Height >= element2.roomY && element1.roomY + element1.sprite.Height <= 
+                    element2.roomY + element2.sprite.Height)
                 { return true; }
             }
 
@@ -1142,11 +1255,14 @@ namespace GameSpace
         //          The element that will be tested.
         public static double TestVertical(Element element1, Element element2)
         {
-            if ((element1.roomX >= element2.roomX && element1.roomX <= element2.roomX + element2.sprite.Width - 1) || (element1.roomX + element1.sprite.Width >= element2.roomX + 1 && element1.roomX + element1.sprite.Width <= element2.roomX + element2.sprite.Width))
+            if ((element1.roomX >= element2.roomX && element1.roomX <= element2.roomX + element2.sprite.Width - 1) || 
+                (element1.roomX + element1.sprite.Width >= element2.roomX + 1 && element1.roomX + element1.sprite.Width <= 
+                element2.roomX + element2.sprite.Width))
             {
                 if (element1.roomY <= element2.roomY + element2.sprite.Height && element1.roomY >= element2.roomY)
                 { return 0; }
-                if (element1.roomY + element1.sprite.Height >= element2.roomY && element1.roomY + element1.sprite.Height <= element2.roomY + element2.sprite.Height)
+                if (element1.roomY + element1.sprite.Height >= element2.roomY && element1.roomY + element1.sprite.Height <= 
+                    element2.roomY + element2.sprite.Height)
                 { return Math.PI; }
             }
             return 10;
@@ -1164,11 +1280,14 @@ namespace GameSpace
         //          The element that will be tested.
         public static double TestHorizontal(Element element1, Element element2)
         {
-            if ((element1.roomY >= element2.roomY && element1.roomY <= element2.roomY + element2.sprite.Height - 1) || (element1.roomY + element1.sprite.Height >= element2.roomY + 1 && element1.roomY + element1.sprite.Height <= element2.roomY + element2.sprite.Height))
+            if ((element1.roomY >= element2.roomY && element1.roomY <= element2.roomY + element2.sprite.Height - 1) || 
+                (element1.roomY + element1.sprite.Height >= element2.roomY + 1 && element1.roomY + element1.sprite.Height <= 
+                element2.roomY + element2.sprite.Height))
             {
                 if (element1.roomX <= element2.roomX + element2.sprite.Width && element1.roomX >= element2.roomX)
                 { return -Math.PI / 2; }
-                if (element1.roomX + element1.sprite.Width >= element2.roomX && element1.roomX + element1.sprite.Width <= element2.roomX)
+                if (element1.roomX + element1.sprite.Width >= element2.roomX && element1.roomX + element1.sprite.Width <= 
+                    element2.roomX)
                 { return Math.PI / 2; }
             }
             return 10;
@@ -1186,9 +1305,11 @@ namespace GameSpace
         //          The element that will be tested if surrounding the inside element.
         public static bool TestCompletelyInside(Element insideElement, Element surroundingElement)
         {
-            if (insideElement.roomX >= surroundingElement.roomX && insideElement.roomX + insideElement.sprite.Width <= surroundingElement.roomX + surroundingElement.sprite.Width)
+            if (insideElement.roomX >= surroundingElement.roomX && insideElement.roomX + insideElement.sprite.Width <= 
+                surroundingElement.roomX + surroundingElement.sprite.Width)
             {
-                if (insideElement.roomY >= surroundingElement.roomY && insideElement.roomY + insideElement.sprite.Height <= surroundingElement.roomY + surroundingElement.sprite.Height)
+                if (insideElement.roomY >= surroundingElement.roomY && insideElement.roomY + insideElement.sprite.Height <= 
+                    surroundingElement.roomY + surroundingElement.sprite.Height)
                 { return true; }
             }
             return false;

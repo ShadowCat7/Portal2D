@@ -11,3 +11,4 @@ Content\Sprites\bluePortalSide.xnb
 Content\Sprites\orangePortalSide.xnb
 Content\Sprites\emptyBox.xnb
 Content\SpriteFont1.xnb
+Content\Sprites\splitscreen.xnb
