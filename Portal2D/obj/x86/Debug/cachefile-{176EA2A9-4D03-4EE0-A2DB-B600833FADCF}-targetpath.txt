@@ -10,5 +10,5 @@ Content\Sprites\orangePortal.xnb
 Content\Sprites\bluePortalSide.xnb
 Content\Sprites\orangePortalSide.xnb
 Content\Sprites\emptyBox.xnb
-Content\SpriteFont1.xnb
 Content\Sprites\splitscreen.xnb
+Content\SpriteFont1.xnb

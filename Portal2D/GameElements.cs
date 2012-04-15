@@ -90,26 +90,7 @@ namespace GameSpace
         //      Provides initialization for the room size, the list of boxes, the player,
         //      the boxes surroundingElement the room, the screen size, and the two portals.
         public GameRoom()
-        {
-            sizeX = 1600;
-            sizeY = 1000;
-
-            boxList = new List<Box>(0);
-            player = new Player(100, 100, 4);
-
-            AddBoxesAround();
-
-            screenX = Screen.X;
-            screenY = Screen.Y;
-
-            bluePortal = new Portal();
-            orangePortal = new Portal();
-
-            boxList.Add(new Box(600, 600, false, true));
-            boxList.Add(new Box(100, 400, true, false));
-            boxList.Add(new Box(100, 800, true, false));
-            boxList.Add(new Box(1400, 400, true, false));
-        }
+        { }
 
         //  Summary:
         //      Adds boxes to the list of boxes that will surround the room.

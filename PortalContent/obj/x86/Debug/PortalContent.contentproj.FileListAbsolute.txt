@@ -1,2 +1,3 @@
 C:\Users\Gateway\Programs\Pikmin\PikminContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Gateway\Programs\Portal2D\PortalContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Attridge\Programs\Portal2D\PortalContent\obj\x86\Debug\ResolveAssemblyReference.cache

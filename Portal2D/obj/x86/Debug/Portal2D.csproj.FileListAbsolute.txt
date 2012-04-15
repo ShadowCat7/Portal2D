@@ -41,3 +41,27 @@ C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Portal2D.application
 C:\Users\Gateway\Programs\Portal2D\Portal2D\obj\x86\Debug\Portal2D.exe.manifest
 C:\Users\Gateway\Programs\Portal2D\Portal2D\obj\x86\Debug\Portal2D.application
 C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\splitscreen.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\obj\x86\Debug\Portal2D.exe
+C:\Users\Attridge\Programs\Portal2D\Portal2D\obj\x86\Debug\Portal2D.pdb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Attridge\Programs\Portal2D\Portal2D\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\wallBox.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\personBack.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Super Kills TF2.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\cursor.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\blueBullet.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangeBullet.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\portalWall.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\bluePortal.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangePortal.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\bluePortalSide.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangePortalSide.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\emptyBox.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\splitscreen.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\SpriteFont1.xnb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Portal2D.exe.manifest
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Portal2D.application
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Portal2D.exe
+C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Portal2D.pdb
+C:\Users\Attridge\Programs\Portal2D\Portal2D\obj\x86\Debug\Portal2D.exe.manifest
+C:\Users\Attridge\Programs\Portal2D\Portal2D\obj\x86\Debug\Portal2D.application

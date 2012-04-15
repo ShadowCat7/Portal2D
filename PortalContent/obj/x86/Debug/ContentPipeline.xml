@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\wallBox.xnb</Output>
-      <Time>2012-03-22T13:04:34.1230279-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\wallBox.xnb</Output>
+      <Time>2012-04-13T15:28:24.5107361-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\personBack.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\personBack.xnb</Output>
-      <Time>2012-03-20T20:34:57.8883844-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\personBack.xnb</Output>
+      <Time>2012-04-13T15:28:24.507736-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Super Kills TF2.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Super Kills TF2.xnb</Output>
-      <Time>2012-03-20T17:42:37.9877792-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Super Kills TF2.xnb</Output>
+      <Time>2012-04-13T15:28:24.4897349-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\cursor.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\cursor.xnb</Output>
-      <Time>2012-03-20T20:46:24.296672-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\cursor.xnb</Output>
+      <Time>2012-04-13T15:28:24.5017356-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\blueBullet.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\blueBullet.xnb</Output>
-      <Time>2012-03-20T21:06:03.0773567-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\blueBullet.xnb</Output>
+      <Time>2012-04-13T15:28:24.490735-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\orangeBullet.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangeBullet.xnb</Output>
-      <Time>2012-03-20T21:06:23.4509924-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangeBullet.xnb</Output>
+      <Time>2012-04-13T15:28:24.5047358-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\portalWall.png</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\portalWall.xnb</Output>
-      <Time>2012-03-22T13:04:23.5864252-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\portalWall.xnb</Output>
+      <Time>2012-04-13T15:28:24.508736-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\bluePortal.png</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\bluePortal.xnb</Output>
-      <Time>2012-03-21T14:09:44.2573124-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\bluePortal.xnb</Output>
+      <Time>2012-04-13T15:28:24.491735-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\orangePortal.png</Source>
@@ -79,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangePortal.xnb</Output>
-      <Time>2012-03-21T14:09:56.6281341-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangePortal.xnb</Output>
+      <Time>2012-04-13T15:28:24.5057358-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\bluePortalSide.png</Source>
@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\bluePortalSide.xnb</Output>
-      <Time>2012-03-21T14:44:01.4861049-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\bluePortalSide.xnb</Output>
+      <Time>2012-04-13T15:28:24.4997355-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\orangePortalSide.png</Source>
@@ -97,8 +97,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangePortalSide.xnb</Output>
-      <Time>2012-03-21T14:44:21.8129406-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangePortalSide.xnb</Output>
+      <Time>2012-04-13T15:28:24.5067359-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\emptyBox.png</Source>
@@ -106,17 +106,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\emptyBox.xnb</Output>
-      <Time>2012-03-22T12:25:13.8766454-07:00</Time>
-    </Item>
-    <Item>
-      <Source>SpriteFont1.spritefont</Source>
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2012-03-21T16:05:50.4116112-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\emptyBox.xnb</Output>
+      <Time>2012-04-13T15:28:24.5027357-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\splitscreen.png</Source>
@@ -124,8 +115,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\splitscreen.xnb</Output>
-      <Time>2012-03-26T23:12:54.2743409-07:00</Time>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\splitscreen.xnb</Output>
+      <Time>2012-04-15T12:54:07.3782966-07:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2012-04-13T15:28:24.4767342-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -133,10 +133,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Gateway\Programs\Portal2D\PortalContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Gateway\Programs\Portal2D\Portal2D\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Gateway\Programs\Portal2D\PortalContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Gateway\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Attridge\Programs\Portal2D\PortalContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Attridge\Programs\Portal2D\Portal2D\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Attridge\Programs\Portal2D\PortalContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -164,8 +164,8 @@
         <Value>2010-08-23T12:41:18-07:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2011-12-21T00:04:54.0988155-07:00</Value>
+        <Key>C:\windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2012-04-13T15:36:04.7969379-07:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
