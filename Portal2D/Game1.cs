@@ -18,6 +18,8 @@ namespace GameSpace
         private KeyboardState oldKeyboardState;
         private MouseState oldMouseState;
 
+        private ImageHandler images;
+
         private Room currentRoom;
 
         private Element mouseElement;
@@ -30,10 +32,10 @@ namespace GameSpace
             Content.RootDirectory = "Content";
             oldKeyboardState = new KeyboardState();
 
-            currentRoom = new Room1();
-
             mouseElement = new Element();
             mouseElement.exists = true;
+
+            images = new ImageHandler();
         }
 
         protected override void Initialize()
@@ -44,25 +46,45 @@ namespace GameSpace
             spriteBatch = new SpriteBatch(GraphicsDevice);
             mouseElement.sprite = Content.Load<Texture2D>("Sprites/cursor");
 
-            currentRoom.player.sprite = Content.Load<Texture2D>("Sprites/personBack");
+            images.background = Content.Load<Texture2D>("Sprites/Super Kills TF2");
+            images.splitScreen = Content.Load<Texture2D>("Sprites/splitscreen");
 
-            currentRoom.player.blueBullet.sprite = Content.Load<Texture2D>("Sprites/blueBullet");
-            currentRoom.player.orangeBullet.sprite = Content.Load<Texture2D>("Sprites/orangeBullet");
+            images.playerSprite = Content.Load<Texture2D>("Sprites/personBack");
 
-            currentRoom.setBoxSprites(Content.Load<Texture2D>("Sprites/wallBox"), Content.Load<Texture2D>("Sprites/portalWall"), Content.Load<Texture2D>("Sprites/emptyBox"));
-            currentRoom.background = Content.Load<Texture2D>("Sprites/Super Kills TF2");
+            images.emptyBox = Content.Load<Texture2D>("Sprites/emptyBox");
+            images.portalWall = Content.Load<Texture2D>("Sprites/portalWall");
+            images.wall = Content.Load<Texture2D>("Sprites/wallBox");
 
-            currentRoom.bluePortal.sprites.Add(Content.Load<Texture2D>("Sprites/bluePortal"));
-            currentRoom.bluePortal.sprites.Add(Content.Load<Texture2D>("Sprites/bluePortalSide"));
+            images.blueBullet = Content.Load<Texture2D>("Sprites/blueBullet");
+            images.orangeBullet = Content.Load<Texture2D>("Sprites/orangeBullet");
 
-            currentRoom.orangePortal.sprites.Add(Content.Load<Texture2D>("Sprites/orangePortal"));
-            currentRoom.orangePortal.sprites.Add(Content.Load<Texture2D>("Sprites/orangePortalSide"));
+            images.laserCatcherSprites.Add("UP", Content.Load<Texture2D>("Sprites/Lasers/LaserCatcherUp"));
+            images.laserCatcherSprites.Add("DOWN", Content.Load<Texture2D>("Sprites/Lasers/LaserCatcherDown"));
+            images.laserCatcherSprites.Add("LEFT", Content.Load<Texture2D>("Sprites/Lasers/LaserCatcherLeft"));
+            images.laserCatcherSprites.Add("RIGHT", Content.Load<Texture2D>("Sprites/Lasers/LaserCatcherRight"));
 
-            currentRoom.screenSplitter = Content.Load<Texture2D>("Sprites/splitscreen");
+            images.laserShooterSprites.Add("UP", Content.Load<Texture2D>("Sprites/Lasers/LaserShooterUp"));
+            images.laserShooterSprites.Add("DOWN", Content.Load<Texture2D>("Sprites/Lasers/LaserShooterDown"));
+            images.laserShooterSprites.Add("LEFT", Content.Load<Texture2D>("Sprites/Lasers/LaserShooterLeft"));
+            images.laserShooterSprites.Add("RIGHT", Content.Load<Texture2D>("Sprites/Lasers/LaserShooterRight"));
+
+            images.laserSprites.Add(Content.Load<Texture2D>("Sprites/Lasers/LaserUD"));
+            images.laserSprites.Add(Content.Load<Texture2D>("Sprites/Lasers/LaserLR"));
+
+            images.bluePortalSprites.Add("LEFT", Content.Load<Texture2D>("Sprites/Portals/bluePortalTop"));
+            images.bluePortalSprites.Add("RIGHT", Content.Load<Texture2D>("Sprites/Portals/bluePortalBottom"));
+            images.bluePortalSprites.Add("UP", Content.Load<Texture2D>("Sprites/Portals/bluePortalSideTop"));
+            images.bluePortalSprites.Add("DOWN", Content.Load<Texture2D>("Sprites/Portals/bluePortalSideBottom"));
+
+            images.orangePortalSprites.Add("LEFT", Content.Load<Texture2D>("Sprites/Portals/orangePortalTop"));
+            images.orangePortalSprites.Add("RIGHT", Content.Load<Texture2D>("Sprites/Portals/orangePortalBottom"));
+            images.orangePortalSprites.Add("UP", Content.Load<Texture2D>("Sprites/Portals/orangePortalSideTop"));
+            images.orangePortalSprites.Add("DOWN", Content.Load<Texture2D>("Sprites/Portals/orangePortalSideBottom"));
+
+            currentRoom = new Room1(images);
 
             font = Content.Load<SpriteFont>("SpriteFont1");
         }
-
 
         protected override void UnloadContent()
         { }
@@ -92,7 +114,7 @@ namespace GameSpace
 
             mouseElement.Draw(spriteBatch);
 
-            spriteBatch.DrawString(font, mouseElement.screenX.ToString(), new Vector2(10, 10), Color.Black);
+            spriteBatch.DrawString(font, currentRoom.laserShooters[0].roomY.ToString(), new Vector2(0, 0), Color.White);
 
             spriteBatch.End();
 

@@ -93,14 +93,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Portal2D.exe" size="26112">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Portal2D.exe" size="32256">
       <assemblyIdentity name="Portal2D" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>oyYfNK/dGn+MVTuVtPD1UdjmxJI=</dsig:DigestValue>
+        <dsig:DigestValue>3uzaXhdJHAqNuvMdbfBNr1CXnGk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -119,25 +119,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>Y6BBmo5fXtt9nMt0VmmcGFlP1TM=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Content\Sprites\bluePortal.xnb" size="4187">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>llPbcrhaow9ixSuNTu7+D01JrYQ=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Content\Sprites\bluePortalSide.xnb" size="4187">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>9yiWZpMSS7Ng8hdT0ZeqUJ6+JvA=</dsig:DigestValue>
+      <dsig:DigestValue>TfFo6VnP1lwxrO/GHFQwlOiQ3WI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Sprites\cursor.xnb" size="1211">
@@ -158,31 +140,103 @@
       <dsig:DigestValue>ScAIKHN5m6+bJY1m2SIzrgJSI+g=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\Sprites\Lasers\LaserCatcherDown.xnb" size="5787">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>/qCzdRwxt995rU6EY+V00URzips=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Lasers\LaserCatcherLeft.xnb" size="5787">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>5mJyUm5EDo72uLeH0MPQaqPuHFk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Lasers\LaserCatcherRight.xnb" size="5787">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>o82R3NTACtIFZilS0AvA+sIjZOk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Lasers\LaserCatcherUp.xnb" size="5787">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>IgYmE3SgyfV8r47IfoqT2IqQF6g=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Lasers\LaserLR.xnb" size="667">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>6nN7wW2JU5cqc2y8ZwJtJf3H43Q=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Lasers\LaserShooterDown.xnb" size="8187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>noIbCuHoOskbH/izy3iCLWgwh9g=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Lasers\LaserShooterLeft.xnb" size="8187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>NsFX8SBsOh9XYFJlO3pBRoE8gZE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Lasers\LaserShooterRight.xnb" size="8187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>YUqYol8XIto6BY8jkIPWRMckTDQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Lasers\LaserShooterUp.xnb" size="8187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>XP7vCDUWorrbPYrnWc8iprKLJbE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Lasers\LaserUD.xnb" size="667">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>O2Mbkwx1cX1idnjCphwP6VqJ+ZU=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\Sprites\orangeBullet.xnb" size="1787">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>atKzs235XZ6Nssw+o68yv+g7BXo=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Content\Sprites\orangePortal.xnb" size="4187">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ESSrBVZUx91KGD9b3vzOevSQWbg=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="Content\Sprites\orangePortalSide.xnb" size="4187">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>NI1EvIFufJav3l7nu8mR/dmXfzk=</dsig:DigestValue>
+      <dsig:DigestValue>3o08vHXyH4eoD2RbpjicXQSAB68=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Sprites\personBack.xnb" size="10187">
@@ -192,6 +246,78 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>bcLsTfD5YU5id/cx14HuEi5BL5o=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Portals\bluePortalBottom.xnb" size="4187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>ocgD2Sl05zWmqDG0Kks3Q3Davc0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Portals\bluePortalSideBottom.xnb" size="4187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>bxuxFsdHLfU60+fFwzpYMRz3I8I=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Portals\bluePortalSideTop.xnb" size="4187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>pN8vSMHKBzDWmM2zys8sYq4dbOE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Portals\bluePortalTop.xnb" size="4187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>5u5fUXQMciZ+3qpLz92IuOeNLxw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Portals\orangePortalBottom.xnb" size="4187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>20PmVhLFyTvtz6msk/EBpKeQGDI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Portals\orangePortalSideBottom.xnb" size="4187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>p47I0d1fNWTYN45+BTPN9GKTjZs=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Portals\orangePortalSideTop.xnb" size="4187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>53nI1deVYT8CPJwYsWkSxAGdYOg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Sprites\Portals\orangePortalTop.xnb" size="4187">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>he6T0V38fP8HLMVVUL7rneTVpC0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Sprites\portalWall.xnb" size="40187">
@@ -227,7 +353,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>MxkhpA6GKv33VY9pcEwNYQfrbTU=</dsig:DigestValue>
+      <dsig:DigestValue>VcseALqzvGVYtysFIPaNDTPFMQ4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Game.ico" size="4286">

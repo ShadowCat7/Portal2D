@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\wallBox.xnb</Output>
-      <Time>2012-04-13T15:28:24.5107361-07:00</Time>
+      <Time>2012-04-15T15:20:30.8696836-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\personBack.png</Source>
@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\blueBullet.xnb</Output>
-      <Time>2012-04-13T15:28:24.490735-07:00</Time>
+      <Time>2012-04-15T14:34:53.8411345-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\orangeBullet.png</Source>
@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangeBullet.xnb</Output>
-      <Time>2012-04-13T15:28:24.5047358-07:00</Time>
+      <Time>2012-04-15T14:32:41.4865643-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\portalWall.png</Source>
@@ -63,42 +63,6 @@
       <Options>None</Options>
       <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\portalWall.xnb</Output>
       <Time>2012-04-13T15:28:24.508736-07:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\bluePortal.png</Source>
-      <Name>Sprites\bluePortal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\bluePortal.xnb</Output>
-      <Time>2012-04-13T15:28:24.491735-07:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\orangePortal.png</Source>
-      <Name>Sprites\orangePortal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangePortal.xnb</Output>
-      <Time>2012-04-13T15:28:24.5057358-07:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\bluePortalSide.png</Source>
-      <Name>Sprites\bluePortalSide</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\bluePortalSide.xnb</Output>
-      <Time>2012-04-13T15:28:24.4997355-07:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\orangePortalSide.png</Source>
-      <Name>Sprites\orangePortalSide</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\orangePortalSide.xnb</Output>
-      <Time>2012-04-13T15:28:24.5067359-07:00</Time>
     </Item>
     <Item>
       <Source>Sprites\emptyBox.png</Source>
@@ -126,6 +90,168 @@
       <Options>None</Options>
       <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
       <Time>2012-04-13T15:28:24.4767342-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Portals\bluePortalBottom.png</Source>
+      <Name>Sprites\Portals\bluePortalBottom</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Portals\bluePortalBottom.xnb</Output>
+      <Time>2012-04-15T14:53:16.7892196-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Portals\bluePortalSideBottom.png</Source>
+      <Name>Sprites\Portals\bluePortalSideBottom</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Portals\bluePortalSideBottom.xnb</Output>
+      <Time>2012-04-15T15:22:39.346032-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Portals\bluePortalSideTop.png</Source>
+      <Name>Sprites\Portals\bluePortalSideTop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Portals\bluePortalSideTop.xnb</Output>
+      <Time>2012-04-15T15:22:46.775457-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Portals\bluePortalTop.png</Source>
+      <Name>Sprites\Portals\bluePortalTop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Portals\bluePortalTop.xnb</Output>
+      <Time>2012-04-15T15:22:54.6909097-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Portals\orangePortalBottom.png</Source>
+      <Name>Sprites\Portals\orangePortalBottom</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Portals\orangePortalBottom.xnb</Output>
+      <Time>2012-04-15T15:23:21.1504231-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Portals\orangePortalTop.png</Source>
+      <Name>Sprites\Portals\orangePortalTop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Portals\orangePortalTop.xnb</Output>
+      <Time>2012-04-15T15:23:27.0617612-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Portals\orangePortalSideTop.png</Source>
+      <Name>Sprites\Portals\orangePortalSideTop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Portals\orangePortalSideTop.xnb</Output>
+      <Time>2012-04-15T15:23:35.8812657-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Portals\orangePortalSideBottom.png</Source>
+      <Name>Sprites\Portals\orangePortalSideBottom</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Portals\orangePortalSideBottom.xnb</Output>
+      <Time>2012-04-15T15:23:43.7157138-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lasers\LaserCatcherDown.png</Source>
+      <Name>Sprites\Lasers\LaserCatcherDown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Lasers\LaserCatcherDown.xnb</Output>
+      <Time>2012-04-15T15:18:05.8843909-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lasers\LaserCatcherLeft.png</Source>
+      <Name>Sprites\Lasers\LaserCatcherLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Lasers\LaserCatcherLeft.xnb</Output>
+      <Time>2012-04-15T15:18:18.0330858-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lasers\LaserCatcherRight.png</Source>
+      <Name>Sprites\Lasers\LaserCatcherRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Lasers\LaserCatcherRight.xnb</Output>
+      <Time>2012-04-15T15:17:57.6429195-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lasers\LaserCatcherUp.png</Source>
+      <Name>Sprites\Lasers\LaserCatcherUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Lasers\LaserCatcherUp.xnb</Output>
+      <Time>2012-04-15T15:18:29.6347494-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lasers\LaserLR.png</Source>
+      <Name>Sprites\Lasers\LaserLR</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Lasers\LaserLR.xnb</Output>
+      <Time>2012-04-15T18:23:18.9540222-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lasers\LaserShooterDown.png</Source>
+      <Name>Sprites\Lasers\LaserShooterDown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Lasers\LaserShooterDown.xnb</Output>
+      <Time>2012-04-15T15:16:36.2222625-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lasers\LaserShooterLeft.png</Source>
+      <Name>Sprites\Lasers\LaserShooterLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Lasers\LaserShooterLeft.xnb</Output>
+      <Time>2012-04-15T15:16:11.472847-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lasers\LaserShooterRight.png</Source>
+      <Name>Sprites\Lasers\LaserShooterRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Lasers\LaserShooterRight.xnb</Output>
+      <Time>2012-04-15T15:00:59.8337042-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lasers\LaserShooterUp.png</Source>
+      <Name>Sprites\Lasers\LaserShooterUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Lasers\LaserShooterUp.xnb</Output>
+      <Time>2012-04-15T15:15:24.5761646-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Lasers\LaserUD.png</Source>
+      <Name>Sprites\Lasers\LaserUD</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Attridge\Programs\Portal2D\Portal2D\bin\x86\Debug\Content\Sprites\Lasers\LaserUD.xnb</Output>
+      <Time>2012-04-15T18:24:02.9955412-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
