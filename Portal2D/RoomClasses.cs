@@ -25,7 +25,7 @@ namespace GameSpace
             laserShooters = new List<LaserShooter>();
             laserCatchers = new List<LaserCatcher>();
 
-            player = new Player(100, 100, 4);
+            player = new Player(200, 100, 4);
 
             AddBoxesAround();
 
@@ -56,7 +56,7 @@ namespace GameSpace
             boxList.Add(new Box(600, 700, true, false));
 
             laserShooters.Add(new LaserShooter(100, 500, Math.PI / 2, images.laserSprites));
-            laserShooters.Add(new LaserShooter(100, 800, 0, images.laserSprites));
+            //laserShooters.Add(new LaserShooter(100, 800, 0, images.laserSprites));
 
             player.sprite = images.playerSprite;
             player.blueBullet.sprite = images.blueBullet;
@@ -70,6 +70,30 @@ namespace GameSpace
 
             setBoxSprites(images.wall, images.portalWall, images.emptyBox);
             setAllLaserSprites(images.laserShooterSprites, images.laserCatcherSprites);
+        }
+
+        public override void playerDied()
+        {
+            player.exists = false;
+
+            cutSceneTimer += 1;
+
+            if (cutSceneTimer == 60)
+            {
+                player.exists = true;
+                player.dead = false;
+                player.roomX = 200;
+                player.roomY = 100;
+                player.blueBullet.exists = false;
+                player.orangeBullet.exists = false;
+                bluePortal.exists = false;
+                orangePortal.exists = false;
+
+                for (int i = 0; i < laserShooters.Count; i++)
+                { laserShooters[i].laser = new Laser(laserShooters[i], laserShooters[i].laserSprites); }
+
+                cutSceneTimer = 0;
+            }
         }
     }
 }

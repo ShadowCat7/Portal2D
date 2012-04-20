@@ -97,6 +97,7 @@ namespace GameSpace
             mouseElement.screenY = newMouseState.Y - mouseElement.sprite.Bounds.Center.Y;
 
             currentRoom.Update(newKeyboardState, oldKeyboardState, newMouseState, oldMouseState);
+            if (currentRoom.player.dead)
 
             oldKeyboardState = newKeyboardState;
             oldMouseState = newMouseState;
@@ -114,7 +115,7 @@ namespace GameSpace
 
             mouseElement.Draw(spriteBatch);
 
-            spriteBatch.DrawString(font, currentRoom.laserShooters[0].roomY.ToString(), new Vector2(0, 0), Color.White);
+            //spriteBatch.DrawString();
 
             spriteBatch.End();
 

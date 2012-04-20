@@ -44,6 +44,7 @@ namespace GameSpace
         /// The variable size of the screen. The X value will change when the screen is split.
         /// </summary>
         public int screenX, screenY;
+        public int cutSceneTimer;
         /// <summary>
         /// The top left position of the view that fits on the screen.
         /// </summary>
@@ -85,7 +86,8 @@ namespace GameSpace
         /// Initializes the room. Specifically initializes the images in the room.
         /// </summary>
         /// <param name="images">The global ImageHandler that holds the images.</param>
-        public Room(ImageHandler images) { }
+        public Room(ImageHandler images)
+        { cutSceneTimer = 0; }
         /// <summary>
         /// Draws the background of the room.
         /// </summary>
@@ -157,6 +159,7 @@ namespace GameSpace
         { }
         public virtual void drawBoxes(SpriteBatch spriteBatch) { }
         public virtual void AddBoxesAround() { }
+        public virtual void playerDied() { }
     }
 
     /// <summary>
@@ -194,11 +197,19 @@ namespace GameSpace
         /// <param name="newMouseState">The current MouseState.</param>
         /// <param name="oldMouseState">The previous MouseState.</param>
         public override void Update(KeyboardState newKeyboardState, KeyboardState oldKeyboardstate, 
-            MouseState newMouseState, 
-            MouseState oldMouseState)
+            MouseState newMouseState, MouseState oldMouseState)
         {
-            player.Update(newKeyboardState, oldKeyboardstate, newMouseState, oldMouseState, boxList, ref bluePortal, 
-                ref orangePortal);
+            if (!player.dead)
+            {
+                player.Update(newKeyboardState, oldKeyboardstate, newMouseState, oldMouseState, boxList, laserShooters,
+                    ref bluePortal, ref orangePortal);
+            }
+            else
+            {
+                playerDied();
+                player.blueBullet.Update();
+                player.orangeBullet.Update();
+            }
 
             if (player.ported)
             {
@@ -247,10 +258,10 @@ namespace GameSpace
 
             for (int i = 0; i < laserShooters.Count; i++)
             {
-                laserShooters[i].Update(boxList);
+                laserShooters[i].Update(boxList, bluePortal, orangePortal);
                 laserShooters[i].setScreenPosition(onScreenX, onScreenY);
-                for (int j = 0; j < laserShooters[i].laser.Count; j++)
-                { laserShooters[i].laser[j].setScreenPosition(onScreenX, onScreenY); }
+                laserShooters[i].laser.Update(boxList, bluePortal, orangePortal);
+                laserShooters[i].laser.setScreenPosition(onScreenX, onScreenY);
             }
 
             // Puts the boxes on the screen in their screen position with regard to their room position.
@@ -309,8 +320,7 @@ namespace GameSpace
                 for (int i = 0; i < laserShooters.Count; i++)
                 {
                     laserShooters[i].setPortedScreenPosition(portedOnScreenX, portedOnScreenY);
-                    for (int j = 0; j < laserShooters[i].laser.Count; j++)
-                    { laserShooters[i].laser[j].setPortedScreenPosition(portedOnScreenX, portedOnScreenY); }
+                    laserShooters[i].laser.setPortedScreenPosition(portedOnScreenX, portedOnScreenY);
                 }
 
                 // For the boxes.
@@ -364,8 +374,7 @@ namespace GameSpace
             for (int i = 0; i < laserShooters.Count; i++)
             {
                 laserShooters[i].Draw(spriteBatch);
-                for (int j = 0; j < laserShooters[i].laser.Count; j++)
-                { laserShooters[i].laser[j].Draw(spriteBatch); }
+                laserShooters[i].laser.Draw(spriteBatch);
             }
 
             drawBoxes(spriteBatch);
@@ -395,8 +404,7 @@ namespace GameSpace
                 for (int i = 0; i < laserShooters.Count; i++)
                 {
                     laserShooters[i].DrawPorted(spriteBatch);
-                    for (int j = 0; j < laserShooters[i].laser.Count; j++)
-                    { laserShooters[i].laser[j].DrawPorted(spriteBatch); }
+                    laserShooters[i].laser.DrawPorted(spriteBatch);
                 }
 
                 for (int i = 0; i < boxList.Count; i++)
@@ -495,8 +503,8 @@ namespace GameSpace
         /// <param name="bluePortal">The blue portal in the room.</param>
         /// <param name="orangePortal">The orange portal in the room.</param>
         public virtual void Update(KeyboardState newKeyboardState, KeyboardState oldKeyboardState, 
-            MouseState newMouseState, MouseState oldMouseState, List<Box> boxList, ref Portal bluePortal, 
-            ref Portal orangePortal) { }
+            MouseState newMouseState, MouseState oldMouseState, List<Box> boxList, List<LaserShooter> laserList,
+            ref Portal bluePortal, ref Portal orangePortal) { }
         /// <summary>
         /// Updates the logic for the element. This is specifically for the inherited member of Bullet.
         /// </summary>
@@ -539,7 +547,7 @@ namespace GameSpace
         /// </summary>
         /// <param name="onScreenX">The top left position of the screen.</param>
         /// <param name="onScreenY">The top left position of the screen.</param>
-        public void setScreenPosition(int onScreenX, int onScreenY)
+        public virtual void setScreenPosition(int onScreenX, int onScreenY)
         {
             screenX = roomX - onScreenX;
             screenY = roomY - onScreenY;
@@ -611,6 +619,7 @@ namespace GameSpace
         ///         Ported is the flag that, if true, says that the player is currently in a portal.
         /// </summary>
         private bool porting;
+        public bool dead;
         /// <summary>
         /// The position of the player's image on the other viewport.
         /// </summary>
@@ -630,13 +639,7 @@ namespace GameSpace
         /// The counter for the amount of time it takes to shoot another bullet.
         /// </summary>
         private int rateOfFire;
-        //  Parameters:
-        //
-        //      argX, argY:
-        //          The integers for the position of the player.
-        //
-        //      argSpeed:
-        //          The integer that represents the speed of the player.
+
         /// <summary>
         /// Initializes the player. Initializes the player's position in the room, the player's speed, the
         /// list of sprites, the bullets, the flag for existence, the flags for porting and touching a 
@@ -655,6 +658,7 @@ namespace GameSpace
             exists = true;
             ported = false;
             porting = false;
+            dead = false;
             rateOfFire = -1;
         }
 
@@ -671,8 +675,8 @@ namespace GameSpace
         /// <param name="bluePortal">The blue portal in the room.</param>
         /// <param name="orangePortal">The orange portal in the room.</param>
         public override void Update(KeyboardState newKeyboardState, KeyboardState oldKeyboardState, 
-            MouseState newMouseState, MouseState oldMouseState, List<Box> boxList, ref Portal bluePortal, 
-            ref Portal orangePortal)
+            MouseState newMouseState, MouseState oldMouseState, List<Box> boxList, List<LaserShooter> laserList, 
+            ref Portal bluePortal, ref Portal orangePortal)
         {
             //  Summary:
             //      These four bools determine the directions possible.
@@ -705,12 +709,42 @@ namespace GameSpace
                         { right = false; }
                     }
                     //  Summary:
-                    //      TODO: Not currently set up. Will eventually say if the player
-                    //      has fallen into a hole, and the consequences of that.
+                    //      When a collision with a hole happens, the player dies.
                     else
                     {
-                        if (Collision.TestCompletelyInside(this, boxList[i]))
-                        { }
+                        if (Collision.TestCompletelyInsideForAll(this, boxList))
+                        { dead = true; }
+                    }
+                }
+
+                for (int i = 0; i < laserList.Count && laserList[i].laser != null; i++)
+                {
+                    for (int j = 0; j < Math.Abs(laserList[i].laser.xReach) / 10; j++)
+                    {
+                        if (Collision.TestCoordinate(laserList[i].laser.roomX + 10 * j * 
+                            Math.Abs(laserList[i].laser.xReach) / laserList[i].laser.xReach,
+                            laserList[i].laser.roomY, this))
+                        { dead = true; }
+                    }
+                    for (int j = 0; j < Math.Abs(laserList[i].laser.yReach) / 10; j++)
+                    {
+                        if (Collision.TestCoordinate(laserList[i].roomX, laserList[i].roomY +
+                            10 * j * Math.Abs(laserList[i].laser.yReach) / laserList[i].laser.yReach, this))
+                        { dead = true; }
+                    }
+                    for (int j = 0; j < Math.Abs(laserList[i].laser.xReachPorted) / 10; j++)
+                    {
+                        if (Collision.TestCoordinate(laserList[i].laser.portedRoomX + 10 * j * 
+                            Math.Abs(laserList[i].laser.xReachPorted) / laserList[i].laser.xReachPorted,
+                            laserList[i].laser.portedRoomY, this))
+                        { dead = true; }
+                    }
+                    for (int j = 0; j < Math.Abs(laserList[i].laser.yReachPorted) / 10; j++)
+                    {
+                        if (Collision.TestCoordinate(laserList[i].laser.portedRoomX, laserList[i].laser.portedRoomY
+                            + 10 * j * Math.Abs(laserList[i].laser.yReachPorted) / laserList[i].laser.yReachPorted, 
+                            this))
+                        { dead = true; }
                     }
                 }
 
@@ -887,6 +921,7 @@ namespace GameSpace
             if (orangeBullet.exists)
             { orangeBullet.Update(boxList, ref orangePortal, ref bluePortal); }
         }
+
         public override void setPortedScreenPosition(int portedOnScreenX, int portedOnScreenY)
         {
             tempPortedScreenX = roomX - portedOnScreenX + 400;
@@ -959,14 +994,13 @@ namespace GameSpace
         /// The direction the laser is moving towards.
         /// </summary>
         public double direction;
-        /// <summary>
-        /// The x-distance the laser travels in one unit of game time.
-        /// </summary>
-        public int xSpeed;
-        /// <summary>
-        /// The y-distance the laser travels in one unit of game time.
-        /// </summary>
-        public int ySpeed;
+        public double portedDirection;
+        public int portedRoomX, portedRoomY;
+        public int otherScreenX, otherScreenY;
+        public int xReach, yReach;
+        public int xReachPorted, yReachPorted;
+        public bool ported;
+        public Texture2D portedSprite;
         /// <summary>
         /// The two images of the laser.
         /// </summary>
@@ -982,56 +1016,188 @@ namespace GameSpace
             direction = laserShooter.direction;
 
             textures = argTextures;
+            xReachPorted = 0;
+            yReachPorted = 0;
+            ported = false;
 
             if (direction == 0)
             {
                 sprite = textures[0];
                 roomX = laserShooter.roomX + laserShooter.sprite.Bounds.Center.X - sprite.Bounds.Center.X;
                 roomY = laserShooter.roomY - 2; //2 to get it in place.
-                ySpeed = -sprite.Bounds.Height;
             }
+
             if (direction == Math.PI)
             {
                 sprite = textures[0];
                 roomX = laserShooter.roomX + laserShooter.sprite.Bounds.Center.X - sprite.Bounds.Center.X;
                 roomY = laserShooter.roomY + 12; //12 to get it in place.
-                ySpeed = sprite.Bounds.Height;
             }
+
             if (direction == Math.PI / 2)
             {
                 sprite = textures[1];
                 roomX = laserShooter.roomX + 12; //12 to get it in place.
                 roomY = laserShooter.roomY + laserShooter.sprite.Bounds.Center.Y - sprite.Bounds.Center.Y;
-                xSpeed = sprite.Bounds.Width;
             }
+
             if (direction == -Math.PI / 2)
             {
                 sprite = textures[1];
                 roomX = laserShooter.roomX + 8; //8 to get it in place.
                 roomY = laserShooter.roomY + laserShooter.sprite.Bounds.Center.Y - sprite.Bounds.Center.Y;
-                xSpeed = -sprite.Bounds.Width;
+            }
+
+            xReach = sprite.Width * (int)Math.Sin(direction);
+            yReach = sprite.Height * (int)Math.Cos(direction);
+        }
+
+        public void Update(List<Box> boxList, Portal bluePortal, Portal orangePortal)
+        {
+            bool collided = false;
+            for (int i = 0; i < boxList.Count; i++)
+            {
+                if (!boxList[i].empty)
+                if (Collision.TestCoordinate(roomX + xReach, roomY + yReach, boxList[i]))
+                { collided = true; }
+            }
+
+            if (!collided)
+            {
+                xReach += sprite.Width * (int)Math.Sin(direction);
+                yReach -= sprite.Height * (int)Math.Cos(direction);
+            }
+
+            Portal tempPortal = null;
+            if (bluePortal.exists && Collision.TestCoordinate(roomX + xReach, roomY + yReach, bluePortal))
+            { tempPortal = orangePortal; }
+            else if (orangePortal.exists && Collision.TestCoordinate(roomX + xReach, roomY + yReach, orangePortal))
+            { tempPortal = bluePortal; }
+            else
+            {
+                ported = false;
+                xReachPorted = 0;
+                yReachPorted = 0;
+            }
+
+            if (tempPortal != null)
+            {
+                ported = true;
+                portedDirection = tempPortal.portalDirection;
+
+                if (portedDirection == 0 || portedDirection == Math.PI)
+                {
+                    portedSprite = textures[0];
+
+                    if (portedDirection == 0)
+                    {
+                        if (yReachPorted <= 0 || !Collision.TestCoordinate(portedRoomX, portedRoomY, tempPortal))
+                        { yReachPorted = portedSprite.Height * (int)Math.Cos(portedDirection); }
+                        portedRoomY = tempPortal.roomY + tempPortal.sprite.Bounds.Center.Y;
+                    }
+                    if (portedDirection == Math.PI)
+                    {
+                        if (yReachPorted > 0 || !Collision.TestCoordinate(portedRoomX, portedRoomY + 
+                            portedSprite.Height, tempPortal))
+                        { yReachPorted = portedSprite.Height * (int)Math.Cos(portedDirection); }
+                        portedRoomY = tempPortal.roomY + tempPortal.sprite.Bounds.Center.Y - portedSprite.Height;
+                    }
+
+                    portedRoomX = tempPortal.roomX + tempPortal.sprite.Bounds.Center.X - portedSprite.Bounds.Center.X;
+                    if (xReachPorted != 0)
+                    { xReachPorted = 0; }
+                }
+                if (portedDirection == Math.PI / 2 || portedDirection == -Math.PI / 2)
+                {
+                    portedSprite = textures[1];
+
+                    if (portedDirection == Math.PI / 2)
+                    {
+                        if (xReachPorted < 0 || !Collision.TestCoordinate(portedRoomX, portedRoomY, tempPortal))
+                        { xReachPorted = 0; }
+                        portedRoomX = tempPortal.roomX + tempPortal.sprite.Bounds.Center.X + 1;
+                    }
+                    if (portedDirection == -Math.PI / 2)
+                    {
+                        if (xReachPorted > 0 || !Collision.TestCoordinate(portedRoomX + portedSprite.Width, 
+                            portedRoomY, tempPortal))
+                        { xReachPorted = 0; }
+                        portedRoomX = tempPortal.roomX + tempPortal.sprite.Bounds.Center.X - portedSprite.Width;
+                    }
+
+                    portedRoomY = tempPortal.roomY + tempPortal.sprite.Bounds.Center.Y - portedSprite.Bounds.Center.Y;
+                    if (yReachPorted != 0)
+                    { yReachPorted = 0; }
+                }
+
+                bool portCollided = false;
+                for (int i = 0; i < boxList.Count; i++)
+                {
+                    if (!boxList[i].empty)
+                        if (Collision.TestCoordinate(portedRoomX + xReachPorted, portedRoomY + yReachPorted, boxList[i]))
+                        { portCollided = true; }
+                }
+
+                if (!portCollided)
+                {
+                    try
+                    {
+                        xReachPorted += portedSprite.Width * (int)Math.Sin(portedDirection);
+                        yReachPorted += portedSprite.Height * (int)Math.Cos(portedDirection);
+                    }
+                    catch (Exception NullReferenceException)
+                    { }
+                }
             }
         }
 
-        public void Update(List<Box> boxList)
+        public override void setScreenPosition(int onScreenX, int onScreenY)
         {
-            for (int i = 0; i < Math.Abs(xSpeed); i++)
+            base.setScreenPosition(onScreenX, onScreenY);
+
+            if (ported)
             {
-                for (int j = 0; j < boxList.Count; j++)
-                {
-                    if (Collision.TestCompletelyInside(this, boxList[j]) && !boxList[j].empty)
-                    { exists = false; }
-                }
-                roomX += xSpeed / Math.Abs(xSpeed);
+                otherScreenX = portedRoomX - onScreenX;
+                otherScreenY = portedRoomY - onScreenY;
             }
-            for (int i = 0; i < Math.Abs(ySpeed); i++)
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(sprite, new Vector2(screenX, screenY), Color.White);
+
+            for (int i = 1; i < Math.Abs(xReach / sprite.Width) + 1; i++)
             {
-                for (int j = 0; j < boxList.Count; j++)
+                spriteBatch.Draw(sprite, new Vector2(screenX + i * sprite.Width * Math.Abs(xReach) / xReach, screenY), 
+                Color.White);
+            }
+
+            for (int i = 1; i < Math.Abs(yReach / sprite.Height) + 1; i++)
+            {
+                spriteBatch.Draw(sprite, new Vector2(screenX, screenY + i * sprite.Height * Math.Abs(yReach) / yReach),
+                  Color.White);
+            }
+
+            if (ported)
+            {
+                try
                 {
-                    if (Collision.TestCompletelyInside(this, boxList[j]) && !boxList[j].empty)
-                    { exists = false; }
+                    spriteBatch.Draw(portedSprite, new Vector2(otherScreenX, otherScreenY), Color.White);
+
+                    for (int i = 1; i < Math.Abs(xReachPorted / portedSprite.Width) + 1; i++)
+                    {
+                        spriteBatch.Draw(portedSprite, new Vector2(otherScreenX + i * portedSprite.Width *
+                            Math.Abs(xReachPorted) / xReachPorted, otherScreenY), Color.White);
+                    }
+
+                    for (int i = 1; i < Math.Abs(yReachPorted / portedSprite.Height) + 1; i++)
+                    {
+                        spriteBatch.Draw(portedSprite, new Vector2(otherScreenX, otherScreenY + i *
+                            portedSprite.Height * Math.Abs(yReachPorted) / yReachPorted), Color.White);
+                    }
                 }
-                roomY += ySpeed / Math.Abs(ySpeed);
+                catch (Exception NullReferenceException)
+                { }
             }
         }
     }
@@ -1045,7 +1211,7 @@ namespace GameSpace
         /// The direction the laser shooter is facing.
         /// </summary>
         public double direction;
-        public List<Laser> laser;
+        public Laser laser;
         public List<Texture2D> laserSprites;
         /// <summary>
         /// Initializies the laser shooter. Initializes the laser shooter's position, direction, and sprite.
@@ -1058,7 +1224,7 @@ namespace GameSpace
         {
             direction = facing;
             exists = true;
-            laser = new List<Laser>();
+            
             laserSprites = laserTextures;
 
             if (facing == 0)
@@ -1086,16 +1252,10 @@ namespace GameSpace
             }
         }
 
-        public void Update(List<Box> boxList)
+        public void Update(List<Box> boxList, Portal bluePortal, Portal orangePortal)
         {
-            for (int i = 0; i < laser.Count; i++)
-            {
-                if (!laser[i].exists)
-                { laser.Remove(laser[i]); }
-                laser[i].Update(boxList);
-            }
-
-            laser.Add(new Laser(this, laserSprites));
+            if (laser == null)
+            { laser = new Laser(this, laserSprites); }
         }
     }
 
@@ -1563,6 +1723,44 @@ namespace GameSpace
                     surroundingElement.roomY + surroundingElement.sprite.Height)
                 { return true; }
             }
+            return false;
+        }
+
+        public static bool TestCompletelyInsideForAll(Element insideElement, List<Box> surroundingElements)
+        {
+            bool topLeft, topRight, bottomLeft, bottomRight;
+            topLeft = topRight = bottomLeft = bottomRight = false;
+
+            for (int i = 0; i < surroundingElements.Count; i++)
+            {
+                if (!topLeft)
+                {
+                    if (TestCoordinate(insideElement.roomX, insideElement.roomY, surroundingElements[i]))
+                    { topLeft = true; }
+                }
+                if (!topRight)
+                {
+                    if (TestCoordinate(insideElement.roomX + insideElement.sprite.Width, insideElement.roomY, 
+                        surroundingElements[i]))
+                    { topRight = true; }
+                }
+                if (!bottomLeft)
+                {
+                    if (TestCoordinate(insideElement.roomX, insideElement.roomY + insideElement.sprite.Height, 
+                        surroundingElements[i]))
+                    { bottomLeft = true; }
+                }
+                if (!bottomRight)
+                {
+                    if (TestCoordinate(insideElement.roomX + insideElement.sprite.Width, insideElement.roomY + 
+                        insideElement.sprite.Height, surroundingElements[i]))
+                    { bottomRight = true; }
+                }
+
+                if (topLeft && topRight && bottomLeft && bottomRight)
+                { return true; }
+            }
+
             return false;
         }
     }
